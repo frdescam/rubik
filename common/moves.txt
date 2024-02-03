@@ -1,0 +1,22 @@
+U
+U'
+D
+D'
+R
+R'
+L
+L'
+F
+F'
+B
+B'
+M
+M'
+E
+E'
+S
+S'
+
+= 18 atomic moves
+
+All other standard moves are compinations of these ones

@@ -1,0 +1,23 @@
+I think we should see the rubiks cube as a root node in a graph, with every layer of the graph being a move that can be one of the 18 possible moves.
+So that we can retrieve the soluotion by computing the shortest path to root - using dynamic programming (Ok, doesn't work cause our algo would just compute from the layer we got from input. a good solution would be to find back the rubiks same state in a layer closer to root so that we can find the closest route to root starting from there.)
+
+Possible solution :
+	Compute a graph starting from root (finished cube), calculating every new state after applying every one of the 18 possible moves. do that for 20 moves (is supposed to be enough)
+	Then when we recieve a cube state, we find the same state in the graph and get up to the root following the shortest path.
+
+====> NOT working, 18^20 = too much
+
+compare the current state to the target state, make one move that get us closer to the targer. repeat.
+If no more move get us closer to target, {
+	go up to choose another path (backtracking),
+	try a move that doesn't seem good (may take long time and not reach the solution)
+}
+
+
+======
+
+Try random moves, select the one that bring us closer to target, the, backtracking or search in precedently built states tree
+
+======
+
+A* ??
