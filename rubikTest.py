@@ -44,8 +44,12 @@ def printStates(root) :
         child.getState().printCube()
         printStates(child)
 
-root = Node(RubikState())
+def main():
+    root = Node(RubikState())
 
-computeStates(root)
+    computeStates(root)
 
-printStates(root)
+    printStates(root)
+
+if __name__ == "__main__":
+    main()

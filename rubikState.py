@@ -10,9 +10,6 @@ class Moves(Enum) :
     D = "D"
     R = "R"
     L = "L"
-    M = "M"
-    E = "E"
-    S = "S"
 
     PF = "PF"
     PB = "PB"
@@ -20,9 +17,6 @@ class Moves(Enum) :
     PD = "PD"
     PR = "PR"
     PL = "PL"
-    PM = "PM"
-    PE = "PE"
-    PS = "PS"
 
     TWOF = "TWOF"
     TWOB = "TWOB"
@@ -391,169 +385,6 @@ class RubikState :
         self.applyB()
         self.applyB()
 
-    def applyM(self) :
-        newFrontFace = self.frontFace.copy()
-        newBackFace = self.backFace.copy()
-        newUpFace = self.upFace.copy()
-        newDownFace = self.downFace.copy()
-
-        newFrontFace[0][1] = self.upFace[0][1]
-        newFrontFace[1][1] = self.upFace[1][1]
-        newFrontFace[2][1] = self.upFace[2][1]
-
-        newBackFace[0][1] = self.downFace[2][1]
-        newBackFace[1][1] = self.downFace[1][1]
-        newBackFace[2][1] = self.downFace[0][1]
-
-        newUpFace[0][1] = self.backFace[2][1]
-        newUpFace[1][1] = self.backFace[1][1]
-        newUpFace[2][1] = self.backFace[0][1]
-
-        newDownFace[0][1] = self.frontFace[0][1]
-        newDownFace[1][1] = self.frontFace[1][1]
-        newDownFace[2][1] = self.frontFace[2][1]
-
-        self.frontFace = newFrontFace
-        self.backFace = newBackFace
-        self.upFace = newUpFace
-        self.downFace = newDownFace
-
-    def applyPrimeM(self) :
-        newFrontFace = self.frontFace.copy()
-        newBackFace = self.backFace.copy()
-        newUpFace = self.upFace.copy()
-        newDownFace = self.downFace.copy()
-
-        newFrontFace[0][1] = self.downFace[0][1]
-        newFrontFace[1][1] = self.downFace[1][1]
-        newFrontFace[2][1] = self.downFace[2][1]
-
-        newBackFace[0][1] = self.upFace[2][1]
-        newBackFace[1][1] = self.upFace[1][1]
-        newBackFace[2][1] = self.upFace[0][1]
-
-        newUpFace[0][1] = self.frontFace[0][1]
-        newUpFace[1][1] = self.frontFace[1][1]
-        newUpFace[2][1] = self.frontFace[2][1]
-
-        newDownFace[0][1] = self.backFace[2][1]
-        newDownFace[1][1] = self.backFace[1][1]
-        newDownFace[2][1] = self.backFace[0][1]
-
-        self.frontFace = newFrontFace
-        self.backFace = newBackFace
-        self.upFace = newUpFace
-        self.downFace = newDownFace
-
-    def applyE(self) :
-        newFrontFace = self.frontFace.copy()
-        newBackFace = self.backFace.copy()
-        newRightFace = self.rightFace.copy()
-        newLeftFace = self.leftFace.copy()
-
-        newFrontFace[1][0] = self.rightFace[1][0]
-        newFrontFace[1][1] = self.rightFace[1][1]
-        newFrontFace[1][2] = self.rightFace[1][2]
-
-        newBackFace[1][0] = self.leftFace[1][0]
-        newBackFace[1][1] = self.leftFace[1][1]
-        newBackFace[1][2] = self.leftFace[1][2]
-
-        newRightFace[1][0] = self.backFace[1][0]
-        newRightFace[1][1] = self.backFace[1][1]
-        newRightFace[1][2] = self.backFace[1][2]
-
-        newLeftFace[1][0] = self.frontFace[1][0]
-        newLeftFace[1][1] = self.frontFace[1][1]
-        newLeftFace[1][2] = self.frontFace[1][2]
-
-        self.frontFace = newFrontFace
-        self.backFace = newBackFace
-        self.rightFace = newRightFace
-        self.leftFace = newLeftFace
-
-
-    def applyPrimeE(self) :
-        newFrontFace = self.frontFace.copy()
-        newBackFace = self.backFace.copy()
-        newRightFace = self.rightFace.copy()
-        newLeftFace = self.leftFace.copy()
-
-        newFrontFace[1][0] = self.leftFace[1][0]
-        newFrontFace[1][1] = self.leftFace[1][1]
-        newFrontFace[1][2] = self.leftFace[1][2]
-
-        newBackFace[1][0] = self.rightFace[1][0]
-        newBackFace[1][1] = self.rightFace[1][1]
-        newBackFace[1][2] = self.rightFace[1][2]
-
-        newRightFace[1][0] = self.frontFace[1][0]
-        newRightFace[1][1] = self.frontFace[1][1]
-        newRightFace[1][2] = self.frontFace[1][2]
-
-        newLeftFace[1][0] = self.backFace[1][0]
-        newLeftFace[1][1] = self.backFace[1][1]
-        newLeftFace[1][2] = self.backFace[1][2]
-
-        self.frontFace = newFrontFace
-        self.backFace = newBackFace
-        self.rightFace = newRightFace
-        self.leftFace = newLeftFace
-
-    def applyS(self) :
-        newUpFace = self.upFace.copy()
-        newDownFace = self.downFace.copy()
-        newRightFace = self.rightFace.copy()
-        newLeftFace = self.leftFace.copy()
-
-        newUpFace[1][0] = self.leftFace[2][1]
-        newUpFace[1][1] = self.leftFace[1][1]
-        newUpFace[1][2] = self.leftFace[0][1]
-
-        newDownFace[1][0] = self.rightFace[2][1]
-        newDownFace[1][1] = self.rightFace[1][1]
-        newDownFace[1][2] = self.rightFace[0][1]
-
-        newRightFace[0][1] = self.upFace[1][0]
-        newRightFace[1][1] = self.upFace[1][1]
-        newRightFace[2][1] = self.upFace[1][2]
-
-        newLeftFace[0][1] = self.downFace[1][0]
-        newLeftFace[1][1] = self.downFace[1][1]
-        newLeftFace[2][1] = self.downFace[1][2]
-
-        self.upFace = newUpFace
-        self.downFace = newDownFace
-        self.rightFace = newRightFace
-        self.leftFace = newLeftFace
-
-
-    def applyPrimeS(self) :
-        newUpFace = self.upFace.copy()
-        newDownFace = self.downFace.copy()
-        newRightFace = self.rightFace.copy()
-        newLeftFace = self.leftFace.copy()
-
-        newUpFace[1][0] = self.rightFace[0][1]
-        newUpFace[1][1] = self.rightFace[1][1]
-        newUpFace[1][2] = self.rightFace[2][1]
-
-        newDownFace[1][0] = self.leftFace[0][1]
-        newDownFace[1][1] = self.leftFace[1][1]
-        newDownFace[1][2] = self.leftFace[2][1]
-
-        newRightFace[0][1] = self.downFace[1][0]
-        newRightFace[1][1] = self.downFace[1][1]
-        newRightFace[2][1] = self.downFace[1][2]
-
-        newLeftFace[0][1] = self.upFace[1][0]
-        newLeftFace[1][1] = self.upFace[1][1]
-        newLeftFace[2][1] = self.upFace[1][2]
-
-        self.upFace = newUpFace
-        self.downFace = newDownFace
-        self.rightFace = newRightFace
-        self.leftFace = newLeftFace
 
     def applyMove(self, move) :
         match move:
@@ -569,12 +400,6 @@ class RubikState :
                 self.applyR()
             case Moves.L :
                 self.applyL()
-            case Moves.M :
-                self.applyM()
-            case Moves.E :
-                self.applyE()
-            case Moves.S :
-                self.applyS()
             case Moves.PF :
                 self.applyPrimeF()
             case Moves.PB :
@@ -587,12 +412,6 @@ class RubikState :
                 self.applyPrimeR()
             case Moves.PL :
                 self.applyPrimeL()
-            case Moves.PM :
-                self.applyPrimeM()
-            case Moves.PE :
-                self.applyPrimeE()
-            case Moves.PS :
-                self.applyPrimeS()
             case Moves.TWOF :
                 self.applyTwoF()
             case Moves.TWOB :
