@@ -24,6 +24,13 @@ class Moves(Enum) :
     PE = "PE"
     PS = "PS"
 
+    TWOF = "TWOF"
+    TWOB = "TWOB"
+    TWOU = "TWOU"
+    TWOD = "TWOD"
+    TWOR = "TWOR"
+    TWOL = "TWOL"
+
 class RubikState :
     def __init__(self) :
         # Xface[x][y]
@@ -91,6 +98,10 @@ class RubikState :
         self.rightFace = newRightFace
         self.leftFace = newLeftFace
 
+    def applyTwoU(self) : 
+        self.applyU()
+        self.applyU()
+
     def applyD(self) :
         self.downFace = self.__rotateFaceCW(self.downFace)
 
@@ -126,6 +137,10 @@ class RubikState :
         self.backFace = newBackFace
         self.rightFace = newRightFace
         self.leftFace = newLeftFace
+
+    def applyTwoD(self) : 
+        self.applyD()
+        self.applyD()
 
     def applyR(self) :
         self.rightFace = self.__rotateFaceCW(self.rightFace)
@@ -185,6 +200,9 @@ class RubikState :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
+    def applyTwoR(self) : 
+        self.applyR()
+        self.applyR()
         
     def applyL(self) :
         self.leftFace = self.__rotateFaceCW(self.leftFace)
@@ -244,6 +262,10 @@ class RubikState :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
+    def applyTwoL(self) : 
+        self.applyL()
+        self.applyL()
+
     def applyF(self) :
         self.frontFace = self.__rotateFaceCW(self.frontFace)
 
@@ -301,7 +323,11 @@ class RubikState :
         self.leftFace = newLeftFace
         self.upFace = newUpFace
         self.downFace = newDownFace
-        
+
+    def applyTwoF(self) : 
+        self.applyF()
+        self.applyF()
+
     def applyB(self) :
         self.backFace = self.__rotateFaceCW(self.backFace)
 
@@ -361,6 +387,9 @@ class RubikState :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
+    def applyTwoB(self) : 
+        self.applyB()
+        self.applyB()
 
     def applyM(self) :
         newFrontFace = self.frontFace.copy()
@@ -415,7 +444,6 @@ class RubikState :
         self.backFace = newBackFace
         self.upFace = newUpFace
         self.downFace = newDownFace
-
 
     def applyE(self) :
         newFrontFace = self.frontFace.copy()
@@ -565,6 +593,18 @@ class RubikState :
                 self.applyPrimeE()
             case Moves.PS :
                 self.applyPrimeS()
+            case Moves.TWOF :
+                self.applyTwoF()
+            case Moves.TWOB :
+                self.applyTwoB()
+            case Moves.TWOU :
+                self.applyTwoU()
+            case Moves.TWOD :
+                self.applyTwoD()
+            case Moves.TWOR :
+                self.applyTwoR()
+            case Moves.TWOL :
+                self.applyTwoL()
 
 
     def printCube(self) :
