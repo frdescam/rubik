@@ -16,8 +16,12 @@ If no more move get us closer to target, {
 
 ======
 
-Try random moves, select the one that bring us closer to target, the, backtracking or search in precedently built states tree
+Try random moves, select the one that bring us closer to target, backtracking or search in precedently built states tree
 
 ======
 
 A* ??
+
+======
+
+Compute the path from some strategic states to the solution then bruteforce the path from our state to one of these strategic states
