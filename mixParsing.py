@@ -54,7 +54,7 @@ def getMix(mix):
 
 def main():
 
-    if (len(sys.argv) != 2):
+    if (sys.argc != 2):
         sys.exit('Wrong number of arguments')
 
     input = sys.argv[1]
