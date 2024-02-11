@@ -201,4 +201,3 @@ class CubeExplorer:
     def solution_to_string(self, length):
     
     def facelets_to_cubiecubes():
-

@@ -428,20 +428,22 @@ class RubikState :
 
     def printCube(self) :
         print()
+        
         print("       " + self.upFace[0][0] + " " + self.upFace[0][1] + " " + self.upFace[0][2])
         print("       " + self.upFace[1][0] + " " + self.upFace[1][1] + " " + self.upFace[1][2])
         print("       " + self.upFace[2][0] + " " + self.upFace[2][1] + " " + self.upFace[2][2])
 
         print()
 
-        print (self.leftFace[0][0] + " " + self.leftFace[0][1] + " " + self.leftFace[0][2] + "  " + self.frontFace[0][0] + " " + self.frontFace[0][1] + " " + self.frontFace[0][2] + "  " + self.rightFace[0][0] + " " + self.rightFace[0][1] + " " + self.rightFace[0][2] + "  " + self.backFace[0][0] + " " + self.backFace[0][1] + " " + self.backFace[0][2])
-        print (self.leftFace[1][0] + " " + self.leftFace[1][1] + " " + self.leftFace[1][2] + "  " + self.frontFace[1][0] + " " + self.frontFace[1][1] + " " + self.frontFace[1][2] + "  " + self.rightFace[1][0] + " " + self.rightFace[1][1] + " " + self.rightFace[1][2] + "  " + self.backFace[1][0] + " " + self.backFace[1][1] + " " + self.backFace[1][2])
-        print (self.leftFace[2][0] + " " + self.leftFace[2][1] + " " + self.leftFace[2][2] + "  " + self.frontFace[2][0] + " " + self.frontFace[2][1] + " " + self.frontFace[2][2] + "  " + self.rightFace[2][0] + " " + self.rightFace[2][1] + " " + self.rightFace[2][2] + "  " + self.backFace[2][0] + " " + self.backFace[2][1] + " " + self.backFace[2][2])
+        print(self.leftFace[0][0] + " " + self.leftFace[0][1] + " " + self.leftFace[0][2] + "  " + self.frontFace[0][0] + " " + self.frontFace[0][1] + " " + self.frontFace[0][2] + "  " + self.rightFace[0][0] + " " + self.rightFace[0][1] + " " + self.rightFace[0][2] + "  " + self.backFace[0][0] + " " + self.backFace[0][1] + " " + self.backFace[0][2])
+        print(self.leftFace[1][0] + " " + self.leftFace[1][1] + " " + self.leftFace[1][2] + "  " + self.frontFace[1][0] + " " + self.frontFace[1][1] + " " + self.frontFace[1][2] + "  " + self.rightFace[1][0] + " " + self.rightFace[1][1] + " " + self.rightFace[1][2] + "  " + self.backFace[1][0] + " " + self.backFace[1][1] + " " + self.backFace[1][2])
+        print(self.leftFace[2][0] + " " + self.leftFace[2][1] + " " + self.leftFace[2][2] + "  " + self.frontFace[2][0] + " " + self.frontFace[2][1] + " " + self.frontFace[2][2] + "  " + self.rightFace[2][0] + " " + self.rightFace[2][1] + " " + self.rightFace[2][2] + "  " + self.backFace[2][0] + " " + self.backFace[2][1] + " " + self.backFace[2][2])
 
         print()
 
         print("       " + self.downFace[0][0] + " " + self.downFace[0][1] + " " + self.downFace[0][2])
         print("       " + self.downFace[1][0] + " " + self.downFace[1][1] + " " + self.downFace[1][2])
         print("       " + self.downFace[2][0] + " " + self.downFace[2][1] + " " + self.downFace[2][2])
+
         print()
         print()

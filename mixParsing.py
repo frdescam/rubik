@@ -1,20 +1,7 @@
 import sys
-
 from rubikState import RubikState, Moves
 
-# check input
-# transform enumeration
-
-def getMix():
-    while 1:
-        print("How would you like to mix our rubicube?")
-        try:
-            mix = input()
-            break
-        except EOFError:
-            sys.exit('EOF error')
-        except:
-            sys.exit('Input error')
+def getMix(mix):
     
     mixList = mix.split()
 
@@ -66,7 +53,23 @@ def getMix():
     return (moves)
 
 def main():
-    getMix()
+
+    if (sys.argc != 2):
+        sys.exit('Wrong number of arguments')
+
+    input = sys.argv[1]
+    initialState = getMix(input)
+
+    rubik = RubikState()
+
+    for move in initialState:
+        rubik.applyMove(move)
+    
+    print("initial state :")
+
+    rubik.printCube()
+
+    # SOLVING PART
 
 if __name__ == "__main__":
     main()
