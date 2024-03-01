@@ -1,5 +1,6 @@
-import sys
 from rubikState import RubikState, Moves
+
+import sys
 
 def getMix(mix):
     
@@ -7,69 +8,15 @@ def getMix(mix):
 
     moves = []
 
-    for move in mixList:
-        if (move == "F"):
-            moves.append(Moves.F)
-        elif (move == "R"):
-            moves.append(Moves.R)
-        elif (move == "U"):
-            moves.append(Moves.U)
-        elif (move == "B"):
-            moves.append(Moves.B)
-        elif (move == "L"):
-            moves.append(Moves.L)
-        elif (move == "D"):
-            moves.append(Moves.D)
+    move_mapping = {
+    "F": Moves.F, "R": Moves.R, "U": Moves.U, "B": Moves.B, "L": Moves.L, "D": Moves.D,
+    "F'": Moves.PF, "R'": Moves.PR, "U'": Moves.PU, "B'": Moves.PB, "L'": Moves.PL, "D'": Moves.PD,
+    "F2": Moves.TWOF, "R2": Moves.TWOR, "U2": Moves.TWOU, "B2": Moves.TWOB, "L2": Moves.TWOL, "D2": Moves.TWOD
+    }
 
-        elif (move == "F'"):
-            moves.append(Moves.PF)
-        elif (move == "P'"):
-            moves.append(Moves.PR)
-        elif (move == "P'"):
-            moves.append(Moves.PU)
-        elif (move == "P'"):
-            moves.append(Moves.PB)
-        elif (move == "P'"):
-            moves.append(Moves.PL)
-        elif (move == "P'"):
-            moves.append(Moves.PD)
-
-        elif (move == "F2"):
-            moves.append(Moves.TWOF)
-        elif (move == "R2"):
-            moves.append(Moves.TWOR)
-        elif (move == "U2"):
-            moves.append(Moves.TWOU)
-        elif (move == "B2"):
-            moves.append(Moves.TWOB)
-        elif (move == "L2"):
-            moves.append(Moves.TWOL)
-        elif (move == "D2"):
-            moves.append(Moves.TWOD)
-
-        else:
+    for one_move in mixList:
+        if one_move not in move_mapping:
             sys.exit('Error in mix sequence notation, please go to http://www.francocube.com/notation.php to check your input')
-            
-    return (moves)
+        moves.append(move_mapping[one_move])
 
-def main():
-
-    if (sys.argc != 2):
-        sys.exit('Wrong number of arguments')
-
-    input = sys.argv[1]
-    initialState = getMix(input)
-
-    rubik = RubikState()
-
-    for move in initialState:
-        rubik.applyMove(move)
-    
-    print("initial state :")
-
-    rubik.printCube()
-
-    # SOLVING PART
-
-if __name__ == "__main__":
-    main()
+    return moves
