@@ -20,3 +20,13 @@ def getMix(mix):
         moves.append(move_mapping[one_move])
 
     return moves
+
+def convert_for_3D(mix):
+    result = []
+    for m in mix:
+        if len(m) == 2 and m[1] == '2':
+            result.append(m[0])
+            result.append(m[0])
+        else:
+            result.append(m)
+    return(result)

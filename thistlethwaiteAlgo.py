@@ -28,6 +28,10 @@ PHASE_MOVES =   [["F","B","L","R","U","D","F'","B'","L'","R'","U'","D'","F2","B2
                 ["U","D","U'","D'","F2","B2","L2","R2","U2","D2"], # G2 -> G3 : 1/4 turns allowed only for Up and Down
                 ["F2","B2","L2","R2","U2","D2"]] # G3 -> G4 : no 1/4 turns at all
 
+## KOCIEMBA PHASES --> not possible because "pruning tables" (ie number of nodes to explore) are too huge
+# PHASE_MOVES =   [["F","B","L","R","U","D","F'","B'","L'","R'","U'","D'","F2","B2","L2","R2","U2","D2"], # G0 -> G1 : all moves
+#                 ["U","D","R2","L2","F2","B2"]] # G1 -> G2
+
 ## HASHING FUNCTION
 
 def get_id(eP, cP, eO, cO, phase):
@@ -51,6 +55,16 @@ def get_id(eP, cP, eO, cO, phase):
         result = eP[:] + cP[:] + eO[:] + cO[:]
         return tuple(result) # full state
 
+# KOCIEMBA TESTS
+
+# def get_id(eP, cP, eO, cO, phase):
+#     if phase == 0:
+#         result = eO[:] + cO[:] + eP[8:12]
+#         return tuple(result)
+#     else:
+#         result = eP[:] + cP[:] + eO[:] + cO[:]
+#     return tuple(result) # full state
+
 # UTILS
 
 def inverse_move(move):
@@ -60,8 +74,8 @@ def inverse_move(move):
 
 
 def useless_move(first, second):
-    opposite_moves = {('R', 'L'), ('U', 'D'), ('F', 'B')}
-    if first == second or (first, second) in opposite_moves:
+    opposite_moves = {('R', 'L'), ('U', 'D'), ('F', 'B')}  # because for example RL = LR
+    if first == second or (first, second) in opposite_moves: # also for exemple M + M = M2 etc
         return True
     return False
 
@@ -70,10 +84,11 @@ def useless_move(first, second):
 def bidir_bfs(phase, start_id, goal_id):
     nodes_dict = { start_id:[FORWARD, "Z", None, CUBE_EP, CUBE_CP, CUBE_EO, CUBE_CO], goal_id:[BACKWARD, "Z", None, GOAL_EP, GOAL_CP, GOAL_EO, GOAL_CO]} # nodes_dict[id] = [direction, move, parent, state]
     queue = deque([nodes_dict[start_id], nodes_dict[goal_id]]) # queue of nodes to explore (first in first out)
+
     while queue: # stops if queue empty and no solution found
         current_node = queue.popleft()
         for move in PHASE_MOVES[phase]:
-            if (useless_move(move[0], current_node[1][0])):
+            if (useless_move(move[0], current_node[1][0])): # check the utility of move compared to last move
                 continue
             new_ep = current_node[3][:]
             new_cp = current_node[4][:]
@@ -97,10 +112,6 @@ def bidir_bfs(phase, start_id, goal_id):
             elif new_node is None: # create new node, add it to queue and continue searching 
                 nodes_dict[new_id] = [current_node[0], move, current_node, new_ep, new_cp, new_eo, new_co]
                 queue.append(nodes_dict[new_id])
-        current_node[3] = None # delete all states to save memory
-        current_node[4] = None
-        current_node[5] = None
-        current_node[6] = None
     return None
 
 def solver(mix):
