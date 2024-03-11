@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from rubikState import RubikState, Moves
 from thistlethwaiteAlgo import solver
 from cubiesMoves import cubiesMove
