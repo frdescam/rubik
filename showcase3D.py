@@ -97,6 +97,9 @@ class Rubik3D():
                     pygame.quit()
                     quit()
                 if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        pygame.quit()
+                        quit()
                     if event.key in rot_cube_map:
                         rot_cube = rot_cube_map[event.key]
                     if not animate and event.key == K_m:

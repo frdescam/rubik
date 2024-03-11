@@ -1,7 +1,4 @@
 import sys
-import time
-import random
-import copy
 
 ## MOVES AT CEPO LEVEL
 ## ie CORNER - EDGE - POSITION - ORIENTATION
