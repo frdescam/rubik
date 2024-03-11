@@ -39,59 +39,60 @@ def moveR(eP, cP, eO, cO):
 
 ## ALL MOVES
 def cubiesMove(one_move, eP, cP, eO, cO):
-    if one_move == "U":
-        moveU(eP, cP, eO, cO)
-    elif one_move == "U'":
-        moveU(eP, cP, eO, cO)
-        moveU(eP, cP, eO, cO)
-        moveU(eP, cP, eO, cO)
-    elif one_move == "U2":
-        moveU(eP, cP, eO, cO)
-        moveU(eP, cP, eO, cO)
-    elif one_move == "D":
-        moveD(eP, cP, eO, cO)
-    elif one_move == "D'":
-        moveD(eP, cP, eO, cO)
-        moveD(eP, cP, eO, cO)
-        moveD(eP, cP, eO, cO)
-    elif one_move == "D2":
-        moveD(eP, cP, eO, cO)
-        moveD(eP, cP, eO, cO)
-    elif one_move == "R":
-        moveR(eP, cP, eO, cO)
-    elif one_move == "R'":
-        moveR(eP, cP, eO, cO)
-        moveR(eP, cP, eO, cO)
-        moveR(eP, cP, eO, cO)
-    elif one_move == "R2":
-        moveR(eP, cP, eO, cO)
-        moveR(eP, cP, eO, cO)
-    elif one_move == "L":
-        moveL(eP, cP, eO, cO)
-    elif one_move == "L'":
-        moveL(eP, cP, eO, cO)
-        moveL(eP, cP, eO, cO)
-        moveL(eP, cP, eO, cO)
-    elif one_move == "L2":
-        moveL(eP, cP, eO, cO)
-        moveL(eP, cP, eO, cO)
-    elif one_move == "F":
-        moveF(eP, cP, eO, cO)
-    elif one_move == "F'":
-        moveF(eP, cP, eO, cO)
-        moveF(eP, cP, eO, cO)
-        moveF(eP, cP, eO, cO)
-    elif one_move == "F2":
-        moveF(eP, cP, eO, cO)
-        moveF(eP, cP, eO, cO)
-    elif one_move == "B":
-        moveB(eP, cP, eO, cO)
-    elif one_move == "B'":
-        moveB(eP, cP, eO, cO)
-        moveB(eP, cP, eO, cO)
-        moveB(eP, cP, eO, cO)
-    elif one_move == "B2":
-        moveB(eP, cP, eO, cO)
-        moveB(eP, cP, eO, cO)
-    else:
-        sys.exit("bad input:" + str(one_move))
+    match one_move:
+        case "U":
+            moveU(eP, cP, eO, cO)
+        case "U'":
+            moveU(eP, cP, eO, cO)
+            moveU(eP, cP, eO, cO)
+            moveU(eP, cP, eO, cO)
+        case "U2":
+            moveU(eP, cP, eO, cO)
+            moveU(eP, cP, eO, cO)
+        case "D":
+            moveD(eP, cP, eO, cO)
+        case "D'":
+            moveD(eP, cP, eO, cO)
+            moveD(eP, cP, eO, cO)
+            moveD(eP, cP, eO, cO)
+        case "D2":
+            moveD(eP, cP, eO, cO)
+            moveD(eP, cP, eO, cO)
+        case "R":
+            moveR(eP, cP, eO, cO)
+        case "R'":
+            moveR(eP, cP, eO, cO)
+            moveR(eP, cP, eO, cO)
+            moveR(eP, cP, eO, cO)
+        case "R2":
+            moveR(eP, cP, eO, cO)
+            moveR(eP, cP, eO, cO)
+        case "L":
+            moveL(eP, cP, eO, cO)
+        case "L'":
+            moveL(eP, cP, eO, cO)
+            moveL(eP, cP, eO, cO)
+            moveL(eP, cP, eO, cO)
+        case "L2":
+            moveL(eP, cP, eO, cO)
+            moveL(eP, cP, eO, cO)
+        case "F":
+            moveF(eP, cP, eO, cO)
+        case "F'":
+            moveF(eP, cP, eO, cO)
+            moveF(eP, cP, eO, cO)
+            moveF(eP, cP, eO, cO)
+        case "F2":
+            moveF(eP, cP, eO, cO)
+            moveF(eP, cP, eO, cO)
+        case "B":
+            moveB(eP, cP, eO, cO)
+        case "B'":
+            moveB(eP, cP, eO, cO)
+            moveB(eP, cP, eO, cO)
+            moveB(eP, cP, eO, cO)
+        case "B2":
+            moveB(eP, cP, eO, cO)
+            moveB(eP, cP, eO, cO)
+        case _:
+            sys.exit("bad input:" + str(one_move))
