@@ -4,6 +4,17 @@ from collections import deque
 import sys
 import time
 
+# COLORS
+
+ANSI_BLUE = "\033[0;34m"
+ANSI_RED = "\033[0;31m"
+ANSI_GREEN = "\033[0;32m"
+ANSI_BROWN = "\033[0;33m"
+ANSI_PURPLE = "\033[0;35m"
+ANSI_CYAN = "\033[0;36m"
+ANSI_YELLOW = "\033[1;33m"
+ANSI_RESET = "\033[0m"
+
 ## CORNER - EDGE - POSITION - ORIENTATION
 
 GOAL_EP = [i for i in range(0, 12)]    # edgePosition        (0-11)   (UF UR UB UL DF DR DB DL FR FL BR BL)	   {0, ..., 11}
@@ -114,6 +125,13 @@ def bidir_bfs(phase, start_id, goal_id):
                 queue.append(nodes_dict[new_id])
     return None
 
+# CHECK
+
+def checkSolution():
+    if GOAL_EP == CUBE_EP and GOAL_CP == CUBE_CP and GOAL_EO == CUBE_EO and GOAL_CO == CUBE_CO:
+        return True
+    return False
+
 def solver(mix):
     for one_move in mix:
         cubiesMove(one_move, CUBE_EP, CUBE_CP, CUBE_EO, CUBE_CO)
@@ -131,10 +149,14 @@ def solver(mix):
             cubiesMove(m, CUBE_EP, CUBE_CP, CUBE_EO, CUBE_CO)
             wc += 1
             tmp += m + ' '
-        print('Phase ' + str(phase) + ': ' + tmp)
+        # print('Phase ' + str(phase) + ': ' + tmp)
         moves_log += tmp
     end_time = time.time()
-    print('\nSolution: ' + moves_log)
+    print('Solution: ' + moves_log)
     print('Duration: {:.2f} seconds'.format(end_time - start_time))
     print('Total number of moves: ' + str(wc))
+    if (checkSolution()):
+        print('Solved? ' + ANSI_GREEN + "OK" + ANSI_RESET )
+    else:
+        print('Solved? ' + ANSI_RED + "KO" + ANSI_RESET)
     return(moves_log)
