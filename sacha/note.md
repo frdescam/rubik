@@ -7,5 +7,10 @@ TO DO:
 
 [X] implement Kociemba algo --> too huge number of nodes to explore
 [] create testeur + scramble
-[] implement human style FMC challenge algo --> Roux
-[] 3D representation
+[] implement human style FMC challenge algo --> Roux / CFOP
+[X] 3D representation
+
+- scop + use arrows
+- test parsing
+- trimming function
+- thistlewaite but continue searching after first solution found to compare other solutions
