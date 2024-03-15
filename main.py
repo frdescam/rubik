@@ -10,6 +10,8 @@ import sys
 import random
 import cProfile
 
+ALL_MOVES = ["F","B","L","R","U","D","F'","B'","L'","R'","U'","D'","F2","B2","L2","R2","U2","D2"]
+
 # PRINT
 
 def printManual():
@@ -18,10 +20,9 @@ def printManual():
     print("Press 'm' to mix cube")
     print("Press 's' to perform solution")
     print("Press 'r' to reset")
+    print("Press 'esc' to escape")
 
 # TESTER
-
-ALL_MOVES = ["F","B","L","R","U","D","F'","B'","L'","R'","U'","D'","F2","B2","L2","R2","U2","D2"]
 
 def testMix(mix):
     print("Mix: " + mix)

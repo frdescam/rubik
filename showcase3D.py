@@ -4,15 +4,15 @@ from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-vertices = (
+VERTICES = (
     ( 1, -1, -1), ( 1,  1, -1), (-1,  1, -1), (-1, -1, -1),
     ( 1, -1,  1), ( 1,  1,  1), (-1, -1,  1), (-1,  1,  1)
 )
-edges = ((0,1),(0,3),(0,4),(2,1),(2,3),(2,7),(6,3),(6,4),(6,7),(5,1),(5,4),(5,7))
-centers = ((0, 1, 2, 3), (3, 2, 7, 6), (6, 7, 5, 4), (4, 5, 1, 0), (1, 5, 7, 2), (4, 0, 3, 6))
+EDGES = ((0,1),(0,3),(0,4),(2,1),(2,3),(2,7),(6,3),(6,4),(6,7),(5,1),(5,4),(5,7))
+CENTERS = ((0, 1, 2, 3), (3, 2, 7, 6), (6, 7, 5, 4), (4, 5, 1, 0), (1, 5, 7, 2), (4, 0, 3, 6))
              # yellow       # green       # white       # blue        # orange       # red
-colors = ((1, 0.8, 0), (0, 0.5, 0), (0.95, 0.95, 0.95), (0, 0, 0.75), (0.9, 0.5, 0), (0.7, 0, 0))
-moves = {
+COLORS = ((1, 0.8, 0), (0, 0.5, 0), (0.95, 0.95, 0.95), (0, 0, 0.75), (0.9, 0.5, 0), (0.7, 0, 0))
+MOVES = {
             # (axis, slice, dir)
             "L": (0, 0, 1), "R'": (0, 2, 1), "D": (1, 0, 1),
             "U'": (1, 2, 1), "B": (2, 0, 1), "F'": (2, 2, 1),
@@ -62,10 +62,10 @@ class Cubie3D():
         glMultMatrixf( self.transformMat() )
 
         glBegin(GL_QUADS)
-        for i in range(len(centers)):
-            glColor3fv(colors[i])
-            for j in centers[i]:
-                glVertex3fv(vertices[j])
+        for i in range(len(CENTERS)):
+            glColor3fv(COLORS[i])
+            for j in CENTERS[i]:
+                glVertex3fv(VERTICES[j])
         glEnd()
 
         glPopMatrix()
@@ -104,12 +104,12 @@ class Rubik3D():
                         rot_cube = rot_cube_map[event.key]
                     if not animate and event.key == K_m:
                         animate = True
-                        action = moves[mix[current_move_index]]
+                        action = MOVES[mix[current_move_index]]
                         current_move_index += 1
                         showing_mix = True
                     if not animate and event.key == K_s:
                         animate = True
-                        action = moves[solution[current_move_index]]
+                        action = MOVES[solution[current_move_index]]
                         current_move_index += 1
                         showing_solution = True
                     if not animate and event.key == K_r:
@@ -152,7 +152,7 @@ class Rubik3D():
 
             if showing_mix and not animate and current_move_index < len(mix):
                 animate = True
-                action = moves[mix[current_move_index]]
+                action = MOVES[mix[current_move_index]]
                 current_move_index += 1
                 if (current_move_index == len(mix)):
                     current_move_index = 0
@@ -160,7 +160,7 @@ class Rubik3D():
 
             if showing_solution and not animate and current_move_index < len(solution):
                 animate = True
-                action = moves[solution[current_move_index]]
+                action = MOVES[solution[current_move_index]]
                 current_move_index += 1
                 if (current_move_index == len(solution)):
                     current_move_index = 0
