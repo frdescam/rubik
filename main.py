@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from rubikState import RubikState, Moves
-from thistlethwaiteAlgo import solver, ANSI_BLUE, ANSI_RED, ANSI_GREEN, ANSI_PURPLE, ANSI_CYAN, ANSI_YELLOW, ANSI_RESET
+from thistlethwaiteAlgo import solver, ANSI_BLUE, ANSI_RED, ANSI_GREEN, ANSI_PURPLE, ANSI_CYAN, ANSI_YELLOW, ANSI_RESET, ANSI_WHITE
 from cubiesMoves import cubiesMove
 from mixParsing import getMix, convert_for_3D
 from showcase3D import showcase
