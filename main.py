@@ -5,6 +5,7 @@ from thistlethwaiteAlgo import solver, ANSI_BLUE, ANSI_RED, ANSI_GREEN, ANSI_PUR
 from cubiesMoves import cubiesMove
 from mixParsing import getMix, convert_for_3D
 from showcase3D import showcase
+from showcase3DFdec import showcaseFdec
 
 import sys
 import random
@@ -108,7 +109,8 @@ def main():
     
         printManual()
     
-        showcase(convert_for_3D(cubiesMix), convert_for_3D(solution.split()))
+        # showcase(convert_for_3D(cubiesMix), convert_for_3D(solution.split()))
+        showcaseFdec(convert_for_3D(cubiesMix), convert_for_3D(solution.split()))
 
 if __name__ == "__main__":
     # cProfile.run('main()')
