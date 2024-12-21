@@ -590,7 +590,7 @@ class Viewer3d(ShowBase):
         self.rotation_cube.setZ(3)
         self.rotation_cube.reparentTo(self.render)
 
-        self.static_cube = self.loader.loadModel(os.getcwd() + "./3dModels/central_cube.gltf")
+        self.static_cube = self.loader.loadModel(os.getcwd() + "/3dModels/central_cube.gltf")
         self.static_cube.setZ(3)
         self.static_cube.reparentTo(self.render)
 
