@@ -18,35 +18,36 @@ from rubikState import Moves
 
 import simplepbr
 
-
 class Viewer3d(ShowBase):
-    # Define a procedure to move the camera.
-    def spinCameraTask(self, task):
-        angleDegrees = task.time * 6.0
-        angleRadians = angleDegrees * (pi / 180.0)
-        self.camera.setPos(20 * sin(angleRadians), -20 * cos(angleRadians), 3)
-        self.camera.setHpr(angleDegrees, 0, 0)
-        return Task.cont
-
     def __init__(self, mix, solution):
         self.mix = mix
         self.solution = solution
         ShowBase.__init__(self)
         simplepbr.init()
+        base.disableMouse()
 
+        self.cube_position_x = 6
+        self.cube_position_y = 6
+        self.cube_position_z = 13
         self.loadCube()
 
+        # Scene
         self.render.setAntialias(AntialiasAttrib.MMultisample)
-        # Load the environment model.
         self.scene = self.loader.loadModel("models/environment")
-        # Reparent the model to render.
         self.scene.reparentTo(self.render)
-        # Apply scale and position transforms on the model.
         self.scene.setScale(0.25, 0.25, 0.25)
         self.scene.setPos(-8, 42, 0)
 
-        # Add the spinCameraTask procedure to the task manager.
-        self.taskMgr.add(self.spinCameraTask, "SpinCameraTask")
+        # Camera
+        self.camera_theta = pi / 4
+        self.camera_phi = pi / 4
+        self.camera_distance = 30
+
+        self.update_camera_position()
+
+        # Add the cameraFollowMouse procedure to the task manager
+        # Handles mouse movments
+        self.taskMgr.add(self.cameraFollowMouse, "cameraFollowMouse")
 
         # Define rotation intervals
         self.z_axis_cw_rot_interval = self.rotation_cube.hprInterval(1.0, Vec3(360, 0, 0))
@@ -56,9 +57,80 @@ class Viewer3d(ShowBase):
         self.y_axis_cw_rot_interval = self.rotation_cube.hprInterval(1.0, Vec3(0, 0, 360))
         self.y_axis_ccw_rot_interval = self.rotation_cube.hprInterval(1.0, Vec3(0, 0, -360))
 
+        # Catch Panda3D events
         self.accept('escape', sys.exit)
         self.accept('m', self.mixCube)
         self.accept('s', self.solveCube)
+        self.accept('shift-=', self.zoomIn)
+        # self.accept('wheel-up', self.zoomIn)
+        self.accept('-', self.zoomOut)
+        # self.accept('wheel-down', self.zoomOut)
+
+        self.accept("mouse1", self.start_drag)
+        self.accept("mouse1-up", self.stop_drag)
+
+        # Inits
+        self.mouse_dragging = False
+        self.last_mouse_x = 0
+        self.last_mouse_y = 0
+
+    def cameraFollowMouse(self, task):
+        if self.mouse_dragging and self.mouseWatcherNode.hasMouse():
+            mouse_device = self.win.getPointer(0)
+            mouse_x = mouse_device.getX()
+            mouse_y = mouse_device.getY()
+
+            theta_delta = (self.last_mouse_x - mouse_x) * 0.01
+            phi_delta = (self.last_mouse_y - mouse_y) * 0.01
+
+            self.last_mouse_x = mouse_x
+            self.last_mouse_y = mouse_y
+
+            self.camera_theta += theta_delta
+            self.camera_phi = max(0.01, min(pi - 0.01, self.camera_phi + phi_delta))
+
+            self.update_camera_position()
+
+        return task.cont
+
+
+    def update_camera_position(self):
+        camera_x = self.camera_distance * sin(self.camera_phi) * cos(self.camera_theta) + self.cube_position_x
+        camera_y = self.camera_distance * sin(self.camera_phi) * sin(self.camera_theta) + self.cube_position_y
+        camera_z = self.camera_distance * cos(self.camera_phi) + self.cube_position_z
+
+        self.camera.setPos(camera_x, camera_y, camera_z)
+        self.make_camera_look_at_cube()
+
+    def make_camera_look_at_cube(self):
+        self.camera.lookAt(self.cube_position_x, self.cube_position_y, self.cube_position_z)
+
+    def start_drag(self):
+        if self.mouseWatcherNode.hasMouse():
+            mouse_device = self.win.getPointer(0)
+            mouse_x = mouse_device.getX()
+            mouse_y = mouse_device.getY()
+
+            if (self.last_mouse_x == 0):
+                self.last_mouse_x = mouse_x
+                self.last_mouse_y = mouse_y
+
+            self.mouse_dragging = True
+
+    def stop_drag(self):
+        self.mouse_dragging = False
+        self.last_mouse_x = 0
+        self.last_mouse_y = 0
+
+    def zoomIn(self):
+        self.camera_distance = max(self.camera_distance - 1, 20)
+        self.update_camera_position()
+
+    def zoomOut(self):
+        self.camera_distance += 1
+        self.update_camera_position()
+
+
 
     def reparentCube(self, cube, parent):
         # cube[1] = cube[0].getPos(self.scene)
@@ -587,16 +659,17 @@ class Viewer3d(ShowBase):
     def loadCube(self):
         # Load central cubes        
         self.rotation_cube = self.loader.loadModel(os.getcwd() + "/3dModels/central_cube.gltf")
-        self.rotation_cube.setZ(3)
+        self.rotation_cube.setPos(self.cube_position_x, self.cube_position_y, self.cube_position_z)
         self.rotation_cube.reparentTo(self.render)
 
         self.static_cube = self.loader.loadModel(os.getcwd() + "/3dModels/central_cube.gltf")
-        self.static_cube.setZ(3)
+        self.static_cube.setPos(self.cube_position_x, self.cube_position_y, self.cube_position_z)
         self.static_cube.reparentTo(self.render)
 
         # Load down face cubes
         self.cube_front_down_left_corner = self.loader.loadModel(os.getcwd() + "/3dModels/corner_cubes/cube_front_down_left_corner.gltf")
         self.cube_front_down_left_corner.reparentTo(self.static_cube)
+
 
         self.cube_front_down_edge = self.loader.loadModel(os.getcwd() + "/3dModels/edge_cubes/cube_front_down_edge.gltf")
         self.cube_front_down_edge.reparentTo(self.static_cube)
