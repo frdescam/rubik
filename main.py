@@ -1,11 +1,10 @@
 #!/usr/bin/python
 
-from rubikState import RubikState, Moves
 from thistlethwaiteAlgo import solver, ANSI_BLUE, ANSI_RED, ANSI_GREEN, ANSI_PURPLE, ANSI_CYAN, ANSI_YELLOW, ANSI_RESET, ANSI_WHITE
-from cubiesMoves import cubiesMove
 from mixParsing import getMix, convert_for_3D
-from showcase3D import showcase
-from showcase3DFdec import showcaseFdec
+from showcases.showcase2D import showcase2D
+from showcases.showcase3D import showcase
+from showcases.showcase3DFdec import showcase3DFdec
 
 import sys
 import random
@@ -86,31 +85,16 @@ def main():
         launchTester()
     
     else:
-        faceletsMix = getMix(input)
-        cubiesMix = input.split()
+        cubiesMix = getMix(input)
     
-        rubik = RubikState()
+        solution = solver(input.split())
     
-        for one_move in faceletsMix:
-            rubik.applyMove(one_move)
-        
-        print("Initial state :")
-        rubik.printCube()
-    
-        solution = solver(cubiesMix)
-    
-        check = getMix(solution)
-    
-        for move in check:
-            rubik.applyMove(move)
-    
-        print('\nFinal state:')
-        rubik.printCube()
-    
-        printManual()
+        solutionMix = getMix(solution)
+
+        showcase2D(getMix(' '.join(convert_for_3D(input.split()))), getMix(' '.join(convert_for_3D(solution.split()))))
     
         # showcase(convert_for_3D(cubiesMix), convert_for_3D(solution.split()))
-        showcaseFdec(convert_for_3D(cubiesMix), convert_for_3D(solution.split()))
+        showcase3DFdec(getMix(' '.join(convert_for_3D(input.split()))), getMix(' '.join(convert_for_3D(solution.split()))))
 
 if __name__ == "__main__":
     # cProfile.run('main()')

@@ -30,20 +30,14 @@ class Moves(Enum) :
     TWOL = "TWOL"
 
 class RubikState :
-    def __init__(self) :
-        # Xface[x][y]
-        # red
-        self.downFace = np.array([[ANSI_RED + "0" + ANSI_RESET, ANSI_RED + "1" + ANSI_RESET, ANSI_RED + "2" + ANSI_RESET], [ANSI_RED + "3" + ANSI_RESET, ANSI_RED + "4" + ANSI_RESET, ANSI_RED + "5" + ANSI_RESET], [ANSI_RED + "6" + ANSI_RESET, ANSI_RED + "7" + ANSI_RESET, ANSI_RED + "8" + ANSI_RESET]])
-        # green
-        self.leftFace = np.array([[ANSI_GREEN + "0" + ANSI_RESET, ANSI_GREEN + "1" + ANSI_RESET, ANSI_GREEN + "2" + ANSI_RESET], [ANSI_GREEN + "3" + ANSI_RESET, ANSI_GREEN + "4" + ANSI_RESET, ANSI_GREEN + "5" + ANSI_RESET], [ANSI_GREEN + "6" + ANSI_RESET, ANSI_GREEN + "7" + ANSI_RESET, ANSI_GREEN + "8" + ANSI_RESET]])
-        # purple (=orange in 3D modelization and original rubik)
-        self.upFace = np.array([[ANSI_PURPLE + "0" + ANSI_RESET, ANSI_PURPLE + "1" + ANSI_RESET, ANSI_PURPLE + "2" + ANSI_RESET], [ANSI_PURPLE + "3" + ANSI_RESET, ANSI_PURPLE + "4" + ANSI_RESET, ANSI_PURPLE + "5" + ANSI_RESET], [ANSI_PURPLE + "6" + ANSI_RESET, ANSI_PURPLE + "7" + ANSI_RESET, ANSI_PURPLE + "8" + ANSI_RESET]])
-        # white
-        self.frontFace = np.array([[ANSI_WHITE + "0" + ANSI_RESET, ANSI_WHITE + "1" + ANSI_RESET, ANSI_WHITE + "2" + ANSI_RESET], [ANSI_WHITE + "3" + ANSI_RESET, ANSI_WHITE + "4" + ANSI_RESET, ANSI_WHITE + "5" + ANSI_RESET], [ANSI_WHITE + "6" + ANSI_RESET, ANSI_WHITE + "7" + ANSI_RESET, ANSI_WHITE + "8" + ANSI_RESET]])
-        # yellow
-        self.backFace = np.array([[ANSI_YELLOW + "0" + ANSI_RESET, ANSI_YELLOW + "1" + ANSI_RESET, ANSI_YELLOW + "2" + ANSI_RESET], [ANSI_YELLOW + "3" + ANSI_RESET, ANSI_YELLOW + "4" + ANSI_RESET, ANSI_YELLOW + "5" + ANSI_RESET], [ANSI_YELLOW + "6" + ANSI_RESET, ANSI_YELLOW + "7" + ANSI_RESET, ANSI_YELLOW + "8" + ANSI_RESET]])
-        # blue
-        self.rightFace = np.array([[ANSI_BLUE + "0" + ANSI_RESET, ANSI_BLUE + "1" + ANSI_RESET, ANSI_BLUE + "2" + ANSI_RESET], [ANSI_BLUE + "3" + ANSI_RESET, ANSI_BLUE + "4" + ANSI_RESET, ANSI_BLUE + "5" + ANSI_RESET], [ANSI_BLUE + "6" + ANSI_RESET, ANSI_BLUE + "7" + ANSI_RESET, ANSI_BLUE + "8" + ANSI_RESET]])
+    def __init__(self, downFace, leftFace, upFace, frontFace, backFace, rightFace) :
+        
+        self.downFace = downFace
+        self.leftFace = leftFace
+        self.upFace = upFace
+        self.frontFace = frontFace
+        self.backFace = backFace
+        self.rightFace = rightFace
 
     def setState(self, other) :
         self.frontFace = other.frontFace
@@ -102,10 +96,6 @@ class RubikState :
         self.rightFace = newRightFace
         self.leftFace = newLeftFace
 
-    def applyTwoU(self) : 
-        self.applyU()
-        self.applyU()
-
     def applyD(self) :
         self.downFace = self.__rotateFaceCW(self.downFace)
 
@@ -141,10 +131,6 @@ class RubikState :
         self.backFace = newBackFace
         self.rightFace = newRightFace
         self.leftFace = newLeftFace
-
-    def applyTwoD(self) : 
-        self.applyD()
-        self.applyD()
 
     def applyR(self) :
         self.rightFace = self.__rotateFaceCW(self.rightFace)
@@ -204,10 +190,6 @@ class RubikState :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
-    def applyTwoR(self) : 
-        self.applyR()
-        self.applyR()
-        
     def applyL(self) :
         self.leftFace = self.__rotateFaceCW(self.leftFace)
 
@@ -266,10 +248,6 @@ class RubikState :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
-    def applyTwoL(self) : 
-        self.applyL()
-        self.applyL()
-
     def applyF(self) :
         self.frontFace = self.__rotateFaceCW(self.frontFace)
 
@@ -327,10 +305,6 @@ class RubikState :
         self.leftFace = newLeftFace
         self.upFace = newUpFace
         self.downFace = newDownFace
-
-    def applyTwoF(self) : 
-        self.applyF()
-        self.applyF()
 
     def applyB(self) :
         self.backFace = self.__rotateFaceCW(self.backFace)
@@ -391,11 +365,6 @@ class RubikState :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
-    def applyTwoB(self) : 
-        self.applyB()
-        self.applyB()
-
-
     def applyMove(self, move) :
         match move:
             case Moves.F :
@@ -422,23 +391,10 @@ class RubikState :
                 self.applyPrimeR()
             case Moves.PL :
                 self.applyPrimeL()
-            case Moves.TWOF :
-                self.applyTwoF()
-            case Moves.TWOB :
-                self.applyTwoB()
-            case Moves.TWOU :
-                self.applyTwoU()
-            case Moves.TWOD :
-                self.applyTwoD()
-            case Moves.TWOR :
-                self.applyTwoR()
-            case Moves.TWOL :
-                self.applyTwoL()
 
-
-    def printCube(self) :
+    def print(self):
         print()
-        
+
         print("       " + self.upFace[0][0] + " " + self.upFace[0][1] + " " + self.upFace[0][2])
         print("       " + self.upFace[1][0] + " " + self.upFace[1][1] + " " + self.upFace[1][2])
         print("       " + self.upFace[2][0] + " " + self.upFace[2][1] + " " + self.upFace[2][2])
