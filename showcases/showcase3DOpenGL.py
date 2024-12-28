@@ -171,7 +171,7 @@ class Rubik3D():
             pygame.display.flip()
             pygame.time.wait(10)
 
-def showcase(mix, solution):
+def showcase3DOpenGL(mix, solution):
 
     pygame.init()
     display_size = (800,600)

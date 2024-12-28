@@ -4,8 +4,8 @@ from colors import ANSI_YELLOW, ANSI_RESET
 from Sequence import Sequence
 from algo.thistlethwaiteAlgo import solver
 from showcases.showcase2D import showcase2D
-from showcases.showcase3D import showcase
-from showcases.showcase3DFdec import showcase3DFdec
+from showcases.showcase3DOpenGL import showcase3DOpenGL
+from showcases.showcase3DBlender import showcase3DBlender
 
 import sys
 import random
@@ -94,8 +94,8 @@ def main():
     
         showcase2D(mix, solution)
     
-        # showcase(mix, solution)
-        showcase3DFdec(mix, solution)
+        # showcase3DOpenGL(mix, solution)
+        showcase3DBlender(mix, solution)
 
 if __name__ == "__main__":
     # cProfile.run('main()')

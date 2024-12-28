@@ -142,6 +142,6 @@ class Viewer3d(ShowBase):
         self.solveIndex = 0
         solveTask = taskMgr.doMethodLater(0.5, self.solveTaskFunction, 'solveTask')
 
-def showcase3DFdec(mix, solution):
+def showcase3DBlender(mix, solution):
     viewer = Viewer3d(mix, solution)
     viewer.run()
