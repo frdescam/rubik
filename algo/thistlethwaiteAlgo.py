@@ -1,4 +1,4 @@
-from cubiesMoves import cubiesMove
+from algo.cubiesMoves import cubiesMove
 from collections import deque
 
 import sys

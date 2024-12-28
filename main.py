@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from thistlethwaiteAlgo import solver, ANSI_BLUE, ANSI_RED, ANSI_GREEN, ANSI_PURPLE, ANSI_CYAN, ANSI_YELLOW, ANSI_RESET, ANSI_WHITE
+from algo.thistlethwaiteAlgo import solver, ANSI_BLUE, ANSI_RED, ANSI_GREEN, ANSI_PURPLE, ANSI_CYAN, ANSI_YELLOW, ANSI_RESET, ANSI_WHITE
 from mixParsing import getMix, convert_for_3D
 from showcases.showcase2D import showcase2D
 from showcases.showcase3D import showcase

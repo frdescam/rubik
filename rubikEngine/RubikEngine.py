@@ -3,10 +3,6 @@
 import numpy as np
 from enum import Enum
 
-from thistlethwaiteAlgo import solver, ANSI_BLUE, ANSI_RED, ANSI_GREEN, ANSI_PURPLE, ANSI_CYAN, ANSI_YELLOW, ANSI_RESET
-
-ANSI_WHITE = "\033[0;37m"
-
 class Moves(Enum) :
     F = "F"
     B = "B"
