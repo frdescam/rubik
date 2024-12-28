@@ -117,20 +117,26 @@ class Viewer3d(ShowBase):
         self.update_camera_position()
 
     def mixTaskFunction(self, task):
-        self.cube.applyMove(self.mix[self.mixIndex])
-        self.mixIndex += 1
-        if self.mixIndex < len(self.mix):
-            return task.again
+        try:
+            nextMove = next(self.mix.asLimitedMoves())
+        except StopIteration:
+            return
+            
+        self.cube.applyMove(nextMove)
+        return task.again
 
     def mixCube(self):
         self.mixIndex = 0
         mixTask = taskMgr.doMethodLater(0.5, self.mixTaskFunction, 'mixTask')
 
     def solveTaskFunction(self, task):
-        self.cube.applyMove(self.solution[self.solveIndex])
-        self.solveIndex += 1
-        if self.solveIndex < len(self.solution):
-            return task.again
+        try:
+            nextMove = next(self.solution.asLimitedMoves())
+        except StopIteration:
+            return
+        
+        self.cube.applyMove(nextMove)
+        return task.again
 
     def solveCube(self):
         self.solveIndex = 0

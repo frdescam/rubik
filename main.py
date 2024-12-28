@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
+from colors import ANSI_YELLOW, ANSI_RESET
+from Sequence import Sequence
 from algo.thistlethwaiteAlgo import solver
-from mixParsing import getMix, convert_for_3D
 from showcases.showcase2D import showcase2D
 from showcases.showcase3D import showcase
 from showcases.showcase3DFdec import showcase3DFdec
@@ -85,16 +86,16 @@ def main():
         launchTester()
     
     else:
-        cubiesMix = getMix(input)
+        mix = Sequence(input)
     
-        solution = solver(input.split())
-    
-        solutionMix = getMix(solution)
+        solutionString = solver(input.split())
 
-        showcase2D(getMix(' '.join(convert_for_3D(input.split()))), getMix(' '.join(convert_for_3D(solution.split()))))
+        solution = Sequence(solutionString)
     
-        showcase(convert_for_3D(input.split()), convert_for_3D(solution.split()))
-        showcase3DFdec(getMix(' '.join(convert_for_3D(input.split()))), getMix(' '.join(convert_for_3D(solution.split()))))
+        showcase2D(mix, solution)
+    
+        # showcase(mix, solution)
+        showcase3DFdec(mix, solution)
 
 if __name__ == "__main__":
     # cProfile.run('main()')

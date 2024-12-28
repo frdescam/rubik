@@ -56,7 +56,7 @@ class RubikEngine :
         newFace = np.array([[oldFace[0][2], oldFace[1][2], oldFace[2][2]], [oldFace[0][1], oldFace[1][1], oldFace[2][1]], [oldFace[0][0], oldFace[1][0], oldFace[2][0]]])
         return newFace
 
-    def applyU(self) :
+    def _applyU(self) :
         self.upFace = self.__rotateFaceCW(self.upFace)
 
         newFrontFace = self.frontFace.copy()
@@ -74,7 +74,7 @@ class RubikEngine :
         self.rightFace = newRightFace
         self.leftFace = newLeftFace
 
-    def applyPrimeU(self) :
+    def _applyPrimeU(self) :
         self.upFace = self.__rotateFaceCCW(self.upFace)
 
         newFrontFace = self.frontFace.copy()
@@ -92,7 +92,11 @@ class RubikEngine :
         self.rightFace = newRightFace
         self.leftFace = newLeftFace
 
-    def applyD(self) :
+    def _applyTwoU(self) : 
+        self._applyU()
+        self._applyU()
+
+    def _applyD(self) :
         self.downFace = self.__rotateFaceCW(self.downFace)
 
         newFrontFace = self.frontFace.copy()
@@ -110,7 +114,7 @@ class RubikEngine :
         self.rightFace = newRightFace
         self.leftFace = newLeftFace
 
-    def applyPrimeD(self) :
+    def _applyPrimeD(self) :
         self.downFace = self.__rotateFaceCCW(self.downFace)
 
         newFrontFace = self.frontFace.copy()
@@ -128,7 +132,11 @@ class RubikEngine :
         self.rightFace = newRightFace
         self.leftFace = newLeftFace
 
-    def applyR(self) :
+    def _applyTwoD(self) : 
+        self._applyD()
+        self._applyD()
+
+    def _applyR(self) :
         self.rightFace = self.__rotateFaceCW(self.rightFace)
 
         newFrontFace = self.frontFace.copy()
@@ -157,7 +165,7 @@ class RubikEngine :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
-    def applyPrimeR(self) :
+    def _applyPrimeR(self) :
         self.rightFace = self.__rotateFaceCCW(self.rightFace)
 
         newFrontFace = self.frontFace.copy()
@@ -186,7 +194,11 @@ class RubikEngine :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
-    def applyL(self) :
+    def _applyTwoR(self) : 
+        self._applyR()
+        self._applyR()
+
+    def _applyL(self) :
         self.leftFace = self.__rotateFaceCW(self.leftFace)
 
         newFrontFace = self.frontFace.copy()
@@ -215,7 +227,7 @@ class RubikEngine :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
-    def applyPrimeL(self) :
+    def _applyPrimeL(self) :
         self.leftFace = self.__rotateFaceCCW(self.leftFace)
 
         newFrontFace = self.frontFace.copy()
@@ -244,7 +256,11 @@ class RubikEngine :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
-    def applyF(self) :
+    def _applyTwoL(self) : 
+        self._applyL()
+        self._applyL()
+
+    def _applyF(self) :
         self.frontFace = self.__rotateFaceCW(self.frontFace)
 
         newRightFace = self.rightFace.copy()
@@ -273,7 +289,7 @@ class RubikEngine :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
-    def applyPrimeF(self) :
+    def _applyPrimeF(self) :
         self.frontFace = self.__rotateFaceCCW(self.frontFace)
 
         newRightFace = self.rightFace.copy()
@@ -302,7 +318,11 @@ class RubikEngine :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
-    def applyB(self) :
+    def _applyTwoF(self) : 
+        self._applyF()
+        self._applyF()
+
+    def _applyB(self) :
         self.backFace = self.__rotateFaceCW(self.backFace)
 
         newRightFace = self.rightFace.copy()
@@ -332,7 +352,7 @@ class RubikEngine :
         self.downFace = newDownFace
 
 
-    def applyPrimeB(self) :
+    def _applyPrimeB(self) :
         self.backFace = self.__rotateFaceCCW(self.backFace)
 
         newRightFace = self.rightFace.copy()
@@ -361,32 +381,48 @@ class RubikEngine :
         self.upFace = newUpFace
         self.downFace = newDownFace
 
+    def _applyTwoB(self) : 
+        self._applyB()
+        self._applyB()
+
     def applyMove(self, move) :
         match move:
             case Moves.F :
-                self.applyF()
+                self._applyF()
             case Moves.B :
-                self.applyB()
+                self._applyB()
             case Moves.U :
-                self.applyU()
+                self._applyU()
             case Moves.D :
-                self.applyD()
+                self._applyD()
             case Moves.R :
-                self.applyR()
+                self._applyR()
             case Moves.L :
-                self.applyL()
+                self._applyL()
             case Moves.PF :
-                self.applyPrimeF()
+                self._applyPrimeF()
             case Moves.PB :
-                self.applyPrimeB()
+                self._applyPrimeB()
             case Moves.PU :
-                self.applyPrimeU()
+                self._applyPrimeU()
             case Moves.PD :
-                self.applyPrimeD()
+                self._applyPrimeD()
             case Moves.PR :
-                self.applyPrimeR()
+                self._applyPrimeR()
             case Moves.PL :
-                self.applyPrimeL()
+                self._applyPrimeL()
+            case Moves.TWOF :
+                self._applyTwoF()
+            case Moves.TWOB :
+                self._applyTwoB()
+            case Moves.TWOU :
+                self._applyTwoU()
+            case Moves.TWOD :
+                self._applyTwoD()
+            case Moves.TWOR :
+                self._applyTwoR()
+            case Moves.TWOL :
+                self._applyTwoL()
 
     def print(self):
         print()

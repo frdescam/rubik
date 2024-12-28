@@ -1,6 +1,6 @@
 #! /usr/bin/python
 
-from rubikEngine.RubikEngine import RubikEngine
+from rubikEngine.RubikEngine import RubikEngine, Moves
 from panda3d.core import Vec3
 import numpy as np
 import time
@@ -226,8 +226,8 @@ class PandaRubikEngine(RubikEngine):
 
         super().__init__(downFace, leftFace, upFace, frontFace, backFace, rightFace)
 
-    def applyU(self) :
-        super().applyU()
+    def _applyU(self) :
+        super()._applyU()
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
@@ -236,8 +236,8 @@ class PandaRubikEngine(RubikEngine):
                 self.reparentCube(cube, self.rotation_cube)
         self.y_axis_cw_rot_interval.start(0, 0.25)
 
-    def applyPrimeU(self) :
-        super().applyPrimeU()
+    def _applyPrimeU(self) :
+        super()._applyPrimeU()
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
@@ -246,8 +246,8 @@ class PandaRubikEngine(RubikEngine):
                 cube[0].reparentTo(self.rotation_cube)
         self.y_axis_ccw_rot_interval.start(0, 0.25)
 
-    def applyD(self) :
-        super().applyD()
+    def _applyD(self) :
+        super()._applyD()
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
@@ -256,8 +256,8 @@ class PandaRubikEngine(RubikEngine):
                 cube[0].reparentTo(self.rotation_cube)
         self.y_axis_ccw_rot_interval.start(0, 0.25)
 
-    def applyPrimeD(self) :
-        super().applyPrimeD()
+    def _applyPrimeD(self) :
+        super()._applyPrimeD()
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
@@ -266,8 +266,8 @@ class PandaRubikEngine(RubikEngine):
                 cube[0].reparentTo(self.rotation_cube)
         self.y_axis_cw_rot_interval.start(0, 0.25)
 
-    def applyR(self) :
-        super().applyR()
+    def _applyR(self) :
+        super()._applyR()
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
@@ -276,8 +276,8 @@ class PandaRubikEngine(RubikEngine):
                 cube[0].reparentTo(self.rotation_cube)
         self.x_axis_cw_rot_interval.start(0, 0.25)
 
-    def applyPrimeR(self) :
-        super().applyPrimeR()
+    def _applyPrimeR(self) :
+        super()._applyPrimeR()
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
@@ -286,8 +286,8 @@ class PandaRubikEngine(RubikEngine):
                 cube[0].reparentTo(self.rotation_cube)
         self.x_axis_ccw_rot_interval.start(0, 0.25)
         
-    def applyL(self) :
-        super().applyL()
+    def _applyL(self) :
+        super()._applyL()
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
@@ -296,8 +296,8 @@ class PandaRubikEngine(RubikEngine):
                 cube[0].reparentTo(self.rotation_cube)
         self.x_axis_ccw_rot_interval.start(0, 0.25)
 
-    def applyPrimeL(self) :
-        super().applyPrimeL()
+    def _applyPrimeL(self) :
+        super()._applyPrimeL()
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
@@ -306,8 +306,8 @@ class PandaRubikEngine(RubikEngine):
                 cube[0].reparentTo(self.rotation_cube)
         self.x_axis_cw_rot_interval.start(0, 0.25)
 
-    def applyF(self) :
-        super().applyF()
+    def _applyF(self) :
+        super()._applyF()
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
@@ -316,8 +316,8 @@ class PandaRubikEngine(RubikEngine):
                 cube[0].reparentTo(self.rotation_cube)
         self.z_axis_ccw_rot_interval.start(0, 0.25)
 
-    def applyPrimeF(self) :
-        super().applyPrimeF()
+    def _applyPrimeF(self) :
+        super()._applyPrimeF()
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
@@ -326,8 +326,8 @@ class PandaRubikEngine(RubikEngine):
                 cube[0].reparentTo(self.rotation_cube)
         self.z_axis_cw_rot_interval.start(0, 0.25)
 
-    def applyB(self) :
-        super().applyB()
+    def _applyB(self) :
+        super()._applyB()
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
@@ -336,8 +336,8 @@ class PandaRubikEngine(RubikEngine):
                 cube[0].reparentTo(self.rotation_cube)
         self.z_axis_cw_rot_interval.start(0, 0.25)
 
-    def applyPrimeB(self) :
-        super().applyPrimeB()
+    def _applyPrimeB(self) :
+        super()._applyPrimeB()
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
@@ -345,6 +345,45 @@ class PandaRubikEngine(RubikEngine):
             for cube in line:
                 cube[0].reparentTo(self.rotation_cube)
         self.z_axis_ccw_rot_interval.start(0, 0.25)
+
+    def applyMove(self, move) :
+        match move:
+            case Moves.F :
+                self._applyF()
+            case Moves.B :
+                self._applyB()
+            case Moves.U :
+                self._applyU()
+            case Moves.D :
+                self._applyD()
+            case Moves.R :
+                self._applyR()
+            case Moves.L :
+                self._applyL()
+            case Moves.PF :
+                self._applyPrimeF()
+            case Moves.PB :
+                self._applyPrimeB()
+            case Moves.PU :
+                self._applyPrimeU()
+            case Moves.PD :
+                self._applyPrimeD()
+            case Moves.PR :
+                self._applyPrimeR()
+            case Moves.PL :
+                self._applyPrimeL()
+            case Moves.TWOF :
+                return
+            case Moves.TWOB :
+                return
+            case Moves.TWOU :
+                return
+            case Moves.TWOD :
+                return
+            case Moves.TWOR :
+                return
+            case Moves.TWOL :
+                return
 
     def reparentCubie(self, cubie, parent):
         cubie[1] = cubie[0].getPos(self.viewer3D.scene)
