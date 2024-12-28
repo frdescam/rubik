@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from algo.thistlethwaiteAlgo import solver, ANSI_BLUE, ANSI_RED, ANSI_GREEN, ANSI_PURPLE, ANSI_CYAN, ANSI_YELLOW, ANSI_RESET, ANSI_WHITE
+from algo.thistlethwaiteAlgo import solver
 from mixParsing import getMix, convert_for_3D
 from showcases.showcase2D import showcase2D
 from showcases.showcase3D import showcase
@@ -93,7 +93,7 @@ def main():
 
         showcase2D(getMix(' '.join(convert_for_3D(input.split()))), getMix(' '.join(convert_for_3D(solution.split()))))
     
-        # showcase(convert_for_3D(cubiesMix), convert_for_3D(solution.split()))
+        showcase(convert_for_3D(input.split()), convert_for_3D(solution.split()))
         showcase3DFdec(getMix(' '.join(convert_for_3D(input.split()))), getMix(' '.join(convert_for_3D(solution.split()))))
 
 if __name__ == "__main__":

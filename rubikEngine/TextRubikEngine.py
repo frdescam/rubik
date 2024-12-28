@@ -1,7 +1,7 @@
 #! /usr/bin/python
 
 from rubikEngine.RubikEngine import RubikEngine
-from algo.thistlethwaiteAlgo import ANSI_BLUE, ANSI_BROWN, ANSI_CYAN, ANSI_GREEN, ANSI_PURPLE, ANSI_RED, ANSI_RESET, ANSI_WHITE, ANSI_YELLOW
+from colors import ANSI_BLUE, ANSI_GREEN, ANSI_PURPLE, ANSI_RED, ANSI_RESET, ANSI_WHITE, ANSI_YELLOW
 import numpy as np
 
 class TextRubikEngine(RubikEngine):
