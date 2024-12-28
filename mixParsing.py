@@ -1,4 +1,4 @@
-from cubeModel.RubikState import Moves
+from rubikEngine.RubikEngine import Moves
 
 import sys
 

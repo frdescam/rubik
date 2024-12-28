@@ -29,7 +29,7 @@ class Moves(Enum) :
     TWOR = "TWOR"
     TWOL = "TWOL"
 
-class RubikState :
+class RubikEngine :
     def __init__(self, downFace, leftFace, upFace, frontFace, backFace, rightFace) :
         
         self.downFace = downFace

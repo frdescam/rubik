@@ -1,9 +1,9 @@
 #! /usr/bin/python
 
-from cubeModel.TextRubikState import TextRubikState
+from rubikEngine.TextRubikEngine import TextRubikEngine
 
 def showcase2D(mix, solution):
-    cube = TextRubikState()
+    cube = TextRubikEngine()
 
     for move in mix:
         cube.applyMove(move)

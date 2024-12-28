@@ -1,12 +1,12 @@
 #! /usr/bin/python
 
-from cubeModel.RubikState import RubikState
+from rubikEngine.RubikEngine import RubikEngine
 from panda3d.core import Vec3
 import numpy as np
 import time
 import os
 
-class PandaRubikState(RubikState):
+class PandaRubikEngine(RubikEngine):
     def __init__(self, position_x, position_y, position_z, viewer3D):
 
         self.viewer3D = viewer3D

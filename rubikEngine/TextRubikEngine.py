@@ -1,10 +1,10 @@
 #! /usr/bin/python
 
-from cubeModel.RubikState import RubikState
+from rubikEngine.RubikEngine import RubikEngine
 from thistlethwaiteAlgo import ANSI_BLUE, ANSI_BROWN, ANSI_CYAN, ANSI_GREEN, ANSI_PURPLE, ANSI_RED, ANSI_RESET, ANSI_WHITE, ANSI_YELLOW
 import numpy as np
 
-class TextRubikState(RubikState):
+class TextRubikEngine(RubikEngine):
     def __init__(self):
         # red
         downFace = np.array([[ANSI_RED + "0" + ANSI_RESET, ANSI_RED + "1" + ANSI_RESET, ANSI_RED + "2" + ANSI_RESET], [ANSI_RED + "3" + ANSI_RESET, ANSI_RED + "4" + ANSI_RESET, ANSI_RED + "5" + ANSI_RESET], [ANSI_RED + "6" + ANSI_RESET, ANSI_RED + "7" + ANSI_RESET, ANSI_RED + "8" + ANSI_RESET]])

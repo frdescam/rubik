@@ -12,7 +12,7 @@ from panda3d.core import Point3
 from panda3d.core import Shader
 from panda3d.core import AntialiasAttrib
 from direct.interval.IntervalGlobal import *
-from cubeModel.PandaRubikState import PandaRubikState
+from rubikEngine.PandaRubikEngine import PandaRubikEngine
 
 import simplepbr
 
@@ -24,7 +24,7 @@ class Viewer3d(ShowBase):
         simplepbr.init()
         base.disableMouse()
 
-        self.cube = PandaRubikState(6, 6, 13, self)
+        self.cube = PandaRubikEngine(6, 6, 13, self)
 
         # Scene
         self.render.setAntialias(AntialiasAttrib.MMultisample)
