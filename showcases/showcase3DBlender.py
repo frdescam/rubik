@@ -60,6 +60,7 @@ class Viewer3d(ShowBase):
         self.mouse_dragging = False
         self.last_mouse_x = 0
         self.last_mouse_y = 0
+        self.taskRunning = False
 
     def cameraFollowMouse(self, task):
         if self.mouse_dragging and self.mouseWatcherNode.hasMouse():
@@ -120,27 +121,31 @@ class Viewer3d(ShowBase):
         try:
             nextMove = next(self.mix.asLimitedMoves())
         except StopIteration:
-            return
+            self.taskRunning = False
+            return task.done
             
         self.cube.applyMove(nextMove)
         return task.again
 
     def mixCube(self):
-        self.mixIndex = 0
-        mixTask = taskMgr.doMethodLater(0.5, self.mixTaskFunction, 'mixTask')
+        if not self.taskRunning :
+            self.taskRunning = True
+            mixTask = taskMgr.doMethodLater(0.5, self.mixTaskFunction, 'mixTask')
 
     def solveTaskFunction(self, task):
         try:
             nextMove = next(self.solution.asLimitedMoves())
         except StopIteration:
-            return
+            self.taskRunning = False
+            return task.done
         
         self.cube.applyMove(nextMove)
         return task.again
 
     def solveCube(self):
-        self.solveIndex = 0
-        solveTask = taskMgr.doMethodLater(0.5, self.solveTaskFunction, 'solveTask')
+        if not self.taskRunning :
+            self.taskRunning = True
+            solveTask = taskMgr.doMethodLater(0.5, self.solveTaskFunction, 'solveTask')
 
 def showcase3DBlender(mix, solution):
     viewer = Viewer3d(mix, solution)
