@@ -229,97 +229,97 @@ class PandaRubikEngine(RubikEngine):
     def _applyU(self) :
         super()._applyU()
 
-        self.reparentAll(self.static_cube)
+        self._reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        self.reparentFace(self.upFace, self.rotation_cube)
+        self._reparentFace(self.upFace, self.rotation_cube)
         self.y_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyPrimeU(self) :
         super()._applyPrimeU()
 
-        self.reparentAll(self.static_cube)
+        self._reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        self.reparentFace(self.upFace, self.rotation_cube)
+        self._reparentFace(self.upFace, self.rotation_cube)
         self.y_axis_ccw_rot_interval.start(0, 0.25)
 
     def _applyD(self) :
         super()._applyD()
 
-        self.reparentAll(self.static_cube)
+        self._reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        self.reparentFace(self.downFace, self.rotation_cube)
+        self._reparentFace(self.downFace, self.rotation_cube)
         self.y_axis_ccw_rot_interval.start(0, 0.25)
 
     def _applyPrimeD(self) :
         super()._applyPrimeD()
 
-        self.reparentAll(self.static_cube)
+        self._reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        self.reparentFace(self.downFace, self.rotation_cube)
+        self._reparentFace(self.downFace, self.rotation_cube)
         self.y_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyR(self) :
         super()._applyR()
 
-        self.reparentAll(self.static_cube)
+        self._reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        self.reparentFace(self.rightFace, self.rotation_cube)
+        self._reparentFace(self.rightFace, self.rotation_cube)
         self.x_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyPrimeR(self) :
         super()._applyPrimeR()
 
-        self.reparentAll(self.static_cube)
+        self._reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        self.reparentFace(self.rightFace, self.rotation_cube)
+        self._reparentFace(self.rightFace, self.rotation_cube)
         self.x_axis_ccw_rot_interval.start(0, 0.25)
         
     def _applyL(self) :
         super()._applyL()
 
-        self.reparentAll(self.static_cube)
+        self._reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        self.reparentFace(self.leftFace, self.rotation_cube)
+        self._reparentFace(self.leftFace, self.rotation_cube)
         self.x_axis_ccw_rot_interval.start(0, 0.25)
 
     def _applyPrimeL(self) :
         super()._applyPrimeL()
 
-        self.reparentAll(self.static_cube)
+        self._reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        self.reparentFace(self.leftFace, self.rotation_cube)
+        self._reparentFace(self.leftFace, self.rotation_cube)
         self.x_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyF(self) :
         super()._applyF()
 
-        self.reparentAll(self.static_cube)
+        self._reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        self.reparentFace(self.frontFace, self.rotation_cube)
+        self._reparentFace(self.frontFace, self.rotation_cube)
         self.z_axis_ccw_rot_interval.start(0, 0.25)
 
     def _applyPrimeF(self) :
         super()._applyPrimeF()
 
-        self.reparentAll(self.static_cube)
+        self._reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        self.reparentFace(self.frontFace, self.rotation_cube)
+        self._reparentFace(self.frontFace, self.rotation_cube)
         self.z_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyB(self) :
         super()._applyB()
 
-        self.reparentAll(self.static_cube)
+        self._reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        self.reparentFace(self.backFace, self.rotation_cube)
+        self._reparentFace(self.backFace, self.rotation_cube)
         self.z_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyPrimeB(self) :
         super()._applyPrimeB()
 
-        self.reparentAll(self.static_cube)
+        self._reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        self.reparentFace(self.backFace, self.rotation_cube)
+        self._reparentFace(self.backFace, self.rotation_cube)
         self.z_axis_ccw_rot_interval.start(0, 0.25)
 
     def applyMove(self, move) :
@@ -348,33 +348,23 @@ class PandaRubikEngine(RubikEngine):
                 self._applyPrimeR()
             case Moves.PL :
                 self._applyPrimeL()
-            case Moves.TWOF :
-                return
-            case Moves.TWOB :
-                return
-            case Moves.TWOU :
-                return
-            case Moves.TWOD :
-                return
-            case Moves.TWOR :
-                return
-            case Moves.TWOL :
-                return
+            case _ :
+                raise ValueError
 
-    def reparentCubie(self, cubie, parent):
+    def _reparentCubie(self, cubie, parent):
         cubieHpr = cubie.getHpr(self.viewer3D.scene)
         cubie.reparentTo(parent)
         cubie.setHpr(self.viewer3D.scene, cubieHpr)
 
-    def reparentFace(self, face, parent):
+    def _reparentFace(self, face, parent):
         for line in face:
             for cubie in line:
-                self.reparentCubie(cubie, parent)
+                self._reparentCubie(cubie, parent)
 
-    def reparentAll(self, parent):
-        self.reparentFace(self.downFace, parent)
-        self.reparentFace(self.upFace, parent)
-        self.reparentFace(self.frontFace, parent)
-        self.reparentFace(self.backFace, parent)
-        self.reparentFace(self.rightFace, parent)
-        self.reparentFace(self.leftFace, parent)
+    def _reparentAll(self, parent):
+        self._reparentFace(self.downFace, parent)
+        self._reparentFace(self.upFace, parent)
+        self._reparentFace(self.frontFace, parent)
+        self._reparentFace(self.backFace, parent)
+        self._reparentFace(self.rightFace, parent)
+        self._reparentFace(self.leftFace, parent)
