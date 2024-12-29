@@ -110,109 +110,109 @@ class PandaRubikEngine(RubikEngine):
 
         downFace = np.array([
             [
-                (self.cube_front_down_left_corner, 0, 0),
-                (self.cube_front_down_edge, 0, 0),
-                (self.cube_front_down_right_corner, 0, 0)
+                self.cube_front_down_left_corner,
+                self.cube_front_down_edge,
+                self.cube_front_down_right_corner
             ],
             [
-                (self.cube_down_left_edge, 0, 0),
-                (self.cube_down_center, 0, 0),
-                (self.cube_down_right_edge, 0, 0)
+                self.cube_down_left_edge,
+                self.cube_down_center,
+                self.cube_down_right_edge
             ],
             [
-                (self.cube_back_down_left_corner, 0, 0),
-                (self.cube_back_down_edge, 0, 0),
-                (self.cube_back_down_right_corner, 0, 0)
+                self.cube_back_down_left_corner,
+                self.cube_back_down_edge,
+                self.cube_back_down_right_corner
             ]
         ])
 
         leftFace = np.array([
             [
-                (self.cube_back_up_left_corner, 0, 0),
-                (self.cube_up_left_edge, 0, 0),
-                (self.cube_front_up_left_corner, 0, 0)
+                self.cube_back_up_left_corner,
+                self.cube_up_left_edge,
+                self.cube_front_up_left_corner
             ],
             [
-                (self.cube_back_left_edge, 0, 0),
-                (self.cube_left_center, 0, 0),
-                (self.cube_front_left_edge, 0, 0)
+                self.cube_back_left_edge,
+                self.cube_left_center,
+                self.cube_front_left_edge
             ],
             [
-                (self.cube_back_down_left_corner, 0, 0),
-                (self.cube_down_left_edge, 0, 0),
-                (self.cube_front_down_left_corner, 0, 0)
+                self.cube_back_down_left_corner,
+                self.cube_down_left_edge,
+                self.cube_front_down_left_corner
             ]
         ])
 
         upFace = np.array([
             [
-                (self.cube_back_up_left_corner, 0, 0),
-                (self.cube_back_up_edge, 0, 0),
-                (self.cube_back_up_right_corner, 0, 0)
+                self.cube_back_up_left_corner,
+                self.cube_back_up_edge,
+                self.cube_back_up_right_corner
             ],
             [
-                (self.cube_up_left_edge, 0, 0),
-                (self.cube_up_center, 0, 0),
-                (self.cube_up_right_edge, 0, 0)
+                self.cube_up_left_edge,
+                self.cube_up_center,
+                self.cube_up_right_edge
             ],
             [
-                (self.cube_front_up_left_corner, 0, 0),
-                (self.cube_front_up_edge, 0, 0),
-                (self.cube_front_up_right_corner, 0, 0)
+                self.cube_front_up_left_corner,
+                self.cube_front_up_edge,
+                self.cube_front_up_right_corner
             ]
         ])
 
         frontFace = np.array([
             [
-                (self.cube_front_up_left_corner, 0, 0),
-                (self.cube_front_up_edge, 0, 0),
-                (self.cube_front_up_right_corner, 0, 0)
+                self.cube_front_up_left_corner,
+                self.cube_front_up_edge,
+                self.cube_front_up_right_corner
             ],
             [
-                (self.cube_front_left_edge, 0, 0),
-                (self.cube_front_center, 0, 0),
-                (self.cube_front_right_edge, 0, 0)
+                self.cube_front_left_edge,
+                self.cube_front_center,
+                self.cube_front_right_edge
             ],
             [
-                (self.cube_front_down_left_corner, 0, 0),
-                (self.cube_front_down_edge, 0, 0),
-                (self.cube_front_down_right_corner, 0, 0)
+                self.cube_front_down_left_corner,
+                self.cube_front_down_edge,
+                self.cube_front_down_right_corner
             ]
         ])
 
         backFace = np.array([
             [
-                (self.cube_back_up_right_corner, 0, 0),
-                (self.cube_back_up_edge, 0, 0),
-                (self.cube_back_up_left_corner, 0, 0)
+                self.cube_back_up_right_corner,
+                self.cube_back_up_edge,
+                self.cube_back_up_left_corner
             ],
             [
-                (self.cube_back_right_edge, 0, 0),
-                (self.cube_back_center, 0, 0),
-                (self.cube_back_left_edge, 0, 0)
+                self.cube_back_right_edge,
+                self.cube_back_center,
+                self.cube_back_left_edge
             ],
             [
-                (self.cube_back_down_right_corner, 0, 0),
-                (self.cube_back_down_edge, 0, 0),
-                (self.cube_back_down_left_corner, 0, 0)
+                self.cube_back_down_right_corner,
+                self.cube_back_down_edge,
+                self.cube_back_down_left_corner
             ]
         ])
 
         rightFace = np.array([
             [
-                (self.cube_front_up_right_corner, 0, 0),
-                (self.cube_up_right_edge, 0, 0),
-                (self.cube_back_up_right_corner, 0, 0)
+                self.cube_front_up_right_corner,
+                self.cube_up_right_edge,
+                self.cube_back_up_right_corner
             ],
             [
-                (self.cube_front_right_edge, 0, 0),
-                (self.cube_right_center, 0, 0),
-                (self.cube_back_right_edge, 0, 0)
+                self.cube_front_right_edge,
+                self.cube_right_center,
+                self.cube_back_right_edge
             ],
             [
-                (self.cube_front_down_right_corner, 0, 0),
-                (self.cube_down_right_edge, 0, 0),
-                (self.cube_back_down_right_corner, 0, 0)
+                self.cube_front_down_right_corner,
+                self.cube_down_right_edge,
+                self.cube_back_down_right_corner
             ]
         ])
 
@@ -231,9 +231,7 @@ class PandaRubikEngine(RubikEngine):
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        for line in self.upFace:
-            for cube in line:
-                self.reparentCubie(cube, self.rotation_cube)
+        self.reparentFace(self.upFace, self.rotation_cube)
         self.y_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyPrimeU(self) :
@@ -241,9 +239,7 @@ class PandaRubikEngine(RubikEngine):
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        for line in self.upFace:
-            for cube in line:
-                cube[0].reparentTo(self.rotation_cube)
+        self.reparentFace(self.upFace, self.rotation_cube)
         self.y_axis_ccw_rot_interval.start(0, 0.25)
 
     def _applyD(self) :
@@ -251,9 +247,7 @@ class PandaRubikEngine(RubikEngine):
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        for line in self.downFace:
-            for cube in line:
-                cube[0].reparentTo(self.rotation_cube)
+        self.reparentFace(self.downFace, self.rotation_cube)
         self.y_axis_ccw_rot_interval.start(0, 0.25)
 
     def _applyPrimeD(self) :
@@ -261,9 +255,7 @@ class PandaRubikEngine(RubikEngine):
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        for line in self.downFace:
-            for cube in line:
-                cube[0].reparentTo(self.rotation_cube)
+        self.reparentFace(self.downFace, self.rotation_cube)
         self.y_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyR(self) :
@@ -271,9 +263,7 @@ class PandaRubikEngine(RubikEngine):
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        for line in self.rightFace:
-            for cube in line:
-                cube[0].reparentTo(self.rotation_cube)
+        self.reparentFace(self.rightFace, self.rotation_cube)
         self.x_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyPrimeR(self) :
@@ -281,9 +271,7 @@ class PandaRubikEngine(RubikEngine):
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        for line in self.rightFace:
-            for cube in line:
-                cube[0].reparentTo(self.rotation_cube)
+        self.reparentFace(self.rightFace, self.rotation_cube)
         self.x_axis_ccw_rot_interval.start(0, 0.25)
         
     def _applyL(self) :
@@ -291,9 +279,7 @@ class PandaRubikEngine(RubikEngine):
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        for line in self.leftFace:
-            for cube in line:
-                cube[0].reparentTo(self.rotation_cube)
+        self.reparentFace(self.leftFace, self.rotation_cube)
         self.x_axis_ccw_rot_interval.start(0, 0.25)
 
     def _applyPrimeL(self) :
@@ -301,9 +287,7 @@ class PandaRubikEngine(RubikEngine):
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        for line in self.leftFace:
-            for cube in line:
-                cube[0].reparentTo(self.rotation_cube)
+        self.reparentFace(self.leftFace, self.rotation_cube)
         self.x_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyF(self) :
@@ -311,9 +295,7 @@ class PandaRubikEngine(RubikEngine):
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        for line in self.frontFace:
-            for cube in line:
-                cube[0].reparentTo(self.rotation_cube)
+        self.reparentFace(self.frontFace, self.rotation_cube)
         self.z_axis_ccw_rot_interval.start(0, 0.25)
 
     def _applyPrimeF(self) :
@@ -321,9 +303,7 @@ class PandaRubikEngine(RubikEngine):
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        for line in self.frontFace:
-            for cube in line:
-                cube[0].reparentTo(self.rotation_cube)
+        self.reparentFace(self.frontFace, self.rotation_cube)
         self.z_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyB(self) :
@@ -331,9 +311,7 @@ class PandaRubikEngine(RubikEngine):
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        for line in self.backFace:
-            for cube in line:
-                cube[0].reparentTo(self.rotation_cube)
+        self.reparentFace(self.backFace, self.rotation_cube)
         self.z_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyPrimeB(self) :
@@ -341,9 +319,7 @@ class PandaRubikEngine(RubikEngine):
 
         self.reparentAll(self.static_cube)
         self.rotation_cube.setHpr(0, 0, 0)
-        for line in self.backFace:
-            for cube in line:
-                cube[0].reparentTo(self.rotation_cube)
+        self.reparentFace(self.backFace, self.rotation_cube)
         self.z_axis_ccw_rot_interval.start(0, 0.25)
 
     def applyMove(self, move) :
@@ -386,10 +362,9 @@ class PandaRubikEngine(RubikEngine):
                 return
 
     def reparentCubie(self, cubie, parent):
-        cubie[1] = cubie[0].getPos(self.viewer3D.scene)
-        cubie[2] = cubie[0].getHpr(self.viewer3D.scene)
-        cubie[0].reparentTo(parent)
-        cubie[0].setHpr(self.viewer3D.scene, cubie[2])
+        cubieHpr = cubie.getHpr(self.viewer3D.scene)
+        cubie.reparentTo(parent)
+        cubie.setHpr(self.viewer3D.scene, cubieHpr)
 
     def reparentFace(self, face, parent):
         for line in face:
