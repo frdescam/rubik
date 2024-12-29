@@ -233,7 +233,7 @@ class PandaRubikEngine(RubikEngine):
         self.rotation_cube.setHpr(0, 0, 0)
         for line in self.upFace:
             for cube in line:
-                self.reparentCube(cube, self.rotation_cube)
+                self.reparentCubie(cube, self.rotation_cube)
         self.y_axis_cw_rot_interval.start(0, 0.25)
 
     def _applyPrimeU(self) :
