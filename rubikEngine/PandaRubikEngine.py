@@ -1,6 +1,7 @@
 #! /usr/bin/python
 
-from rubikEngine.RubikEngine import RubikEngine, Moves
+from rubikEngine.RubikEngine import RubikEngine
+from RubikMoves import Moves
 from panda3d.core import Vec3
 import numpy as np
 import time
