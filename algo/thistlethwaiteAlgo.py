@@ -1,6 +1,7 @@
 from algo.cubiesMoves import cubiesMove
 from collections import deque
 from colors import ANSI_GREEN, ANSI_RED, ANSI_RESET
+from Sequence import Sequence
 
 import sys
 import time
@@ -123,7 +124,7 @@ def checkSolution():
     return False
 
 def solver(mix):
-    for one_move in mix:
+    for one_move in mix.asString():
         cubiesMove(one_move, CUBE_EP, CUBE_CP, CUBE_EO, CUBE_CO)
     start_time = time.time()
     wc = 0
@@ -149,4 +150,4 @@ def solver(mix):
         print('Solved? ' + ANSI_GREEN + "OK" + ANSI_RESET )
     else:
         print('Solved? ' + ANSI_RED + "KO" + ANSI_RESET)
-    return(moves_log)
+    return(Sequence(moves_log))

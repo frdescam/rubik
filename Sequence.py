@@ -1,11 +1,12 @@
-from rubikEngine.RubikEngine import Moves
+from RubikMoves import Moves
 
 class Sequence():
     def __init__(self, stringSeq):
-        self.stringSeq = stringSeq
+        self.stringSeq = stringSeq.split()
         self.moveSeq = self.__stringSeq2MoveSeq(stringSeq)
         self.limitedMoveSeq = self.__moveSeq2LimitedMoveSeq(self.moveSeq)
 
+        self.stringSeqIndex = 0
         self.moveSeqIndex = 0
         self.limitedMoveSeqIndex = 0
         
@@ -55,6 +56,10 @@ class Sequence():
                     limitedMoveSeq.append(move)
         return(limitedMoveSeq)
 
+    def asString(self):
+        self.currentSeq = self.stringSeq
+        return self
+
     def asMoves(self):
         self.currentSeq = self.moveSeq
         return self
@@ -82,8 +87,18 @@ class Sequence():
         self.limitedMoveSeqIndex += 1
         return nextMove
 
+    def __stringSeq_next(self):
+        if self.stringSeqIndex >= len(self.stringSeq):
+            self.stringSeqIndex = 0
+            raise StopIteration
+        nextMove = self.stringSeq[self.stringSeqIndex]
+        self.stringSeqIndex += 1
+        return nextMove
+
     def __next__(self):
         if (self.currentSeq is self.moveSeq):
             return self.__moveSeq_next()
-        else:
+        elif (self.currentSeq is self.limitedMoveSeq):
             return self.__limitedMoveSeq_next()
+        else :
+            return self.__stringSeq_next()

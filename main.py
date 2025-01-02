@@ -88,13 +88,11 @@ def main():
     else:
         mix = Sequence(input)
     
-        solutionString = solver(input.split())
+        solution = solver(mix)
 
-        solution = Sequence(solutionString)
-    
         showcase2D(mix, solution)
     
-        # showcase3DOpenGL(mix, solution)
+        showcase3DOpenGL(mix, solution)
         showcase3DBlender(mix, solution)
 
 if __name__ == "__main__":

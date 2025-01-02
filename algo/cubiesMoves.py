@@ -1,3 +1,4 @@
+from RubikMoves import Moves
 import sys
 
 ## MOVES AT CEPO LEVEL

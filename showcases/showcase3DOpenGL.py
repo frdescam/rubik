@@ -6,6 +6,8 @@ from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
+from RubikMoves import Moves
+
 VERTICES = (
     ( 1, -1, -1), ( 1,  1, -1), (-1,  1, -1), (-1, -1, -1),
     ( 1, -1,  1), ( 1,  1,  1), (-1, -1,  1), (-1,  1,  1)
@@ -16,10 +18,10 @@ CENTERS = ((0, 1, 2, 3), (3, 2, 7, 6), (6, 7, 5, 4), (4, 5, 1, 0), (1, 5, 7, 2),
 COLORS = ((1, 0.8, 0), (0, 0.5, 0), (0.95, 0.95, 0.95), (0, 0, 0.75), (0.9, 0.5, 0), (0.7, 0, 0))
 MOVES = {
             # (axis, slice, dir)
-            "L": (0, 0, 1), "R'": (0, 2, 1), "D": (1, 0, 1),
-            "U'": (1, 2, 1), "B": (2, 0, 1), "F'": (2, 2, 1),
-            "L'": (0, 0, -1), "R": (0, 2, -1), "D'": (1, 0, -1),
-            "U": (1, 2, -1), "B'": (2, 0, -1), "F": (2, 2, -1),
+            Moves.L: (0, 0, 1), Moves.PR: (0, 2, 1), Moves.D: (1, 0, 1),
+            Moves.PU: (1, 2, 1), Moves.B: (2, 0, 1), Moves.PF: (2, 2, 1),
+            Moves.PL: (0, 0, -1), Moves.R: (0, 2, -1), Moves.PD: (1, 0, -1),
+            Moves.U: (1, 2, -1), Moves.PB: (2, 0, -1), Moves.F: (2, 2, -1),
         }
 
 class Cubie3D():
@@ -85,7 +87,6 @@ class Rubik3D():
         ang_x, ang_y, rot_cube = 0, 0, (0, 0)
         animate, animate_ang, animate_speed = False, 0, 5
         action = (0, 0, 0)
-        current_move_index = 0
 
         showing_solution = False
         showing_mix = False
@@ -106,13 +107,11 @@ class Rubik3D():
                         rot_cube = rot_cube_map[event.key]
                     if not animate and event.key == K_m:
                         animate = True
-                        action = MOVES[mix[current_move_index]]
-                        current_move_index += 1
+                        action = MOVES[next(mix)]
                         showing_mix = True
                     if not animate and event.key == K_s:
                         animate = True
-                        action = MOVES[solution[current_move_index]]
-                        current_move_index += 1
+                        action = MOVES[next(solution)]
                         showing_solution = True
                     if not animate and event.key == K_r:
                         for cube in self.cubes:
@@ -146,26 +145,24 @@ class Rubik3D():
 
             for cube in self.cubes:
                 cube.draw(animate, animate_ang, *action)
-            
+
             if animate:
                 animate_ang += animate_speed
 
             # MIX & SOLUTION ANIMATIONS
 
-            if showing_mix and not animate and current_move_index < len(mix):
-                animate = True
-                action = MOVES[mix[current_move_index]]
-                current_move_index += 1
-                if (current_move_index == len(mix)):
-                    current_move_index = 0
+            if showing_mix and not animate:
+                try:
+                    action = MOVES[next(mix)]
+                    animate = True
+                except StopIteration:
                     showing_mix = False
 
-            if showing_solution and not animate and current_move_index < len(solution):
-                animate = True
-                action = MOVES[solution[current_move_index]]
-                current_move_index += 1
-                if (current_move_index == len(solution)):
-                    current_move_index = 0
+            if showing_solution and not animate:
+                try:
+                    action = MOVES[next(solution)]
+                    animate = True
+                except StopIteration:
                     showing_solution = False
 
             pygame.display.flip()
@@ -182,6 +179,6 @@ def showcase3DOpenGL(mix, solution):
     gluPerspective(45, (display_size[0]/display_size[1]), 0.1, 50.0)
 
     cube = Rubik3D(3, 2) # create a 3x3x3 rubik, scale of 2 
-    cube.mainloop(mix, solution)
+    cube.mainloop(mix.asLimitedMoves(), solution.asLimitedMoves())
 
     pygame.quit()
