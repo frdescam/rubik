@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 import pygame
 from pygame.locals import *
 
@@ -95,11 +97,11 @@ class Rubik3D():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    quit()
+                    return()
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         pygame.quit()
-                        quit()
+                        return()
                     if event.key in rot_cube_map:
                         rot_cube = rot_cube_map[event.key]
                     if not animate and event.key == K_m:
@@ -169,7 +171,7 @@ class Rubik3D():
             pygame.display.flip()
             pygame.time.wait(10)
 
-def showcase(mix, solution):
+def showcase3DOpenGL(mix, solution):
 
     pygame.init()
     display_size = (800,600)
@@ -183,4 +185,3 @@ def showcase(mix, solution):
     cube.mainloop(mix, solution)
 
     pygame.quit()
-    quit()

@@ -1,20 +1,9 @@
-from cubiesMoves import cubiesMove
+from algo.cubiesMoves import cubiesMove
 from collections import deque
+from colors import ANSI_GREEN, ANSI_RED, ANSI_RESET
 
 import sys
 import time
-
-# COLORS
-
-ANSI_BLUE = "\033[0;34m"
-ANSI_RED = "\033[0;31m"
-ANSI_GREEN = "\033[0;32m"
-ANSI_BROWN = "\033[0;33m"
-ANSI_PURPLE = "\033[0;35m"
-ANSI_CYAN = "\033[0;36m"
-ANSI_YELLOW = "\033[1;33m"
-ANSI_WHITE = "\033[0;37m"
-ANSI_RESET = "\033[0m"
 
 ## CORNER - EDGE - POSITION - ORIENTATION
 

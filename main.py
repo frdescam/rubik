@@ -1,11 +1,11 @@
 #!/usr/bin/python
 
-from rubikState import RubikState, Moves
-from thistlethwaiteAlgo import solver, ANSI_BLUE, ANSI_RED, ANSI_GREEN, ANSI_PURPLE, ANSI_CYAN, ANSI_YELLOW, ANSI_RESET, ANSI_WHITE
-from cubiesMoves import cubiesMove
-from mixParsing import getMix, convert_for_3D
-from showcase3D import showcase
-from showcase3DFdec import showcaseFdec
+from colors import ANSI_YELLOW, ANSI_RESET
+from Sequence import Sequence
+from algo.thistlethwaiteAlgo import solver
+from showcases.showcase2D import showcase2D
+from showcases.showcase3DOpenGL import showcase3DOpenGL
+from showcases.showcase3DBlender import showcase3DBlender
 
 import sys
 import random
@@ -86,31 +86,16 @@ def main():
         launchTester()
     
     else:
-        faceletsMix = getMix(input)
-        cubiesMix = input.split()
+        mix = Sequence(input)
     
-        rubik = RubikState()
+        solutionString = solver(input.split())
+
+        solution = Sequence(solutionString)
     
-        for one_move in faceletsMix:
-            rubik.applyMove(one_move)
-        
-        print("Initial state :")
-        rubik.printCube()
+        showcase2D(mix, solution)
     
-        solution = solver(cubiesMix)
-    
-        check = getMix(solution)
-    
-        for move in check:
-            rubik.applyMove(move)
-    
-        print('\nFinal state:')
-        rubik.printCube()
-    
-        printManual()
-    
-        # showcase(convert_for_3D(cubiesMix), convert_for_3D(solution.split()))
-        showcaseFdec(convert_for_3D(cubiesMix), convert_for_3D(solution.split()))
+        # showcase3DOpenGL(mix, solution)
+        showcase3DBlender(mix, solution)
 
 if __name__ == "__main__":
     # cProfile.run('main()')
