@@ -92,8 +92,8 @@ def main():
 
         showcase2D(mix, solution)
     
-        showcase3DOpenGL(mix, solution)
-        showcase3DBlender(mix, solution)
+        # showcase3DOpenGL(mix, solution)
+        # showcase3DBlender(mix, solution)
 
 if __name__ == "__main__":
     # cProfile.run('main()')
