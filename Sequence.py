@@ -1,3 +1,4 @@
+import sys
 from RubikMoves import Moves
 
 class Sequence():
