@@ -27,7 +27,7 @@ def printManual():
 
 def testMix(mix):
     print("Mix: " + mix)
-    solution = solver(mix.split())
+    solution = solver(Sequence(mix))
     # check
     print("\n")
 

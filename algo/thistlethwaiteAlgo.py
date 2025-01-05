@@ -77,7 +77,7 @@ def inverse_move(move):
 
 def useless_move(first, second):
     opposite_moves = {('R', 'L'), ('U', 'D'), ('F', 'B')}  # because for example RL = LR
-    if first == second or (first, second) in opposite_moves: # also for exemple M + M = M2 etc
+    if first == second or (first, second) in opposite_moves: # also for exemple U + U = U2 etc
         return True
     return False
 
@@ -140,7 +140,6 @@ def solver(mix):
             cubiesMove(m, CUBE_EP, CUBE_CP, CUBE_EO, CUBE_CO)
             wc += 1
             tmp += m + ' '
-        # print('Phase ' + str(phase) + ': ' + tmp)
         moves_log += tmp
     end_time = time.time()
     print('Solution: ' + moves_log)
