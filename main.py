@@ -4,8 +4,8 @@ from colors import ANSI_YELLOW, ANSI_RESET
 from Sequence import Sequence
 from algo.thistlethwaiteAlgo import solver
 from showcases.showcase2D import showcase2D
-from showcases.showcase3DOpenGL import showcase3DOpenGL
-from showcases.showcase3DBlender import showcase3DBlender
+# from showcases.showcase3DOpenGL import showcase3DOpenGL
+# from showcases.showcase3DBlender import showcase3DBlender
 
 import sys
 import random
